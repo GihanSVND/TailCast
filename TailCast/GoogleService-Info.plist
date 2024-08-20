@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyAxIft3_vOyD4Q0DhhM8UNFXyYFFrUccGk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>191267139203</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>GHN.TailCast</string>
+	<key>PROJECT_ID</key>
+	<string>tailcast-c8a65</string>
+	<key>STORAGE_BUCKET</key>
+	<string>tailcast-c8a65.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:191267139203:ios:3595e4e40e3786d55ff5b6</string>
+</dict>
+</plist>
