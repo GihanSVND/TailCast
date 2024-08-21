@@ -18,41 +18,38 @@ struct MakeUserProfile: View {
             NavigationStack{
                 ZStack{
                     Rectangle()
-                        .foregroundColor(Color(hue: 0.761, saturation: 0.981, brightness: 0.133))
+                        .foregroundColor(Color.white)
                         .ignoresSafeArea()
                     
                     VStack {
+                        
                         if(selectedImage != nil){
                             
                             Image(uiImage: selectedImage!)
-                                .resizable()
                                 .frame(width: 200,height: 200)
                                 .cornerRadius(120)
                             
                         }else{
-                            Image(systemName: "person.circle.fill")
+                            Image(systemName: "circle.fill")
+                                
                                 .resizable()
                                 .frame(width: 200,height: 200)
-                                .foregroundColor(.purple)
+                                .foregroundColor(.black.opacity(0.2))
                         }
                         Spacer()
                             .frame(height: 24.0)
+                        
+                        
+                        
                         Button(action: {
                             //upload image
                             isImagePicker = true
                         }, label: {
-                            HStack {
-                                
-                                Text("Upload Image")
-                                    .foregroundColor(.white)
-                                    .font(.headline)
-                                    .foregroundColor(.black)
-                                Image(systemName: "square.and.arrow.up")
-                                    .offset(y:-5)
-                                    .font(.title3)
-                                    .foregroundColor(.purple)
-                            }
-                        })
+                            Image(systemName: "photo.fill")
+                                .resizable()
+                                .foregroundColor(Color.white)
+                                .frame(width: 43,height: 35)
+                        }).offset(y:-137)
                         .sheet(isPresented: $isImagePicker, onDismiss: nil, content: {
                             ImagePicker(selecteImage: $selectedImage, isPickerShowing: $isImagePicker)
                         })
@@ -62,14 +59,14 @@ struct MakeUserProfile: View {
                         TextField("", text: $name)
                             .padding()
                             .foregroundColor(.white)
-                            .background(Color.purple.opacity(0.3))
+                            .background(Color.black.opacity(0.2))
                             .cornerRadius(23)
                             .textFieldStyle(.plain)
                             .placeholder(when: name.isEmpty){
                                 Text("Enter Your name")
                                     .padding()
-                                    .foregroundColor(.purple)
-                                    .bold()
+                                    .foregroundColor(.black)
+                                    
                             }
                         
                         Spacer()
@@ -77,7 +74,7 @@ struct MakeUserProfile: View {
                     }.padding()
                     
                 }
-            }
+            }.navigationTitle("Profile")
         }
     }
     
