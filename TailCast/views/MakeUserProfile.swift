@@ -13,28 +13,34 @@ struct MakeUserProfile: View {
     @State var isImagePicker: Bool = false
     @State var selectedImage: UIImage?
     @State var name: String = ""
+    @State var bio: String = ""
     var body: some View {
         NavigationView{
             NavigationStack{
                 ZStack{
-                    Rectangle()
-                        .foregroundColor(Color.white)
-                        .ignoresSafeArea()
                     
                     VStack {
-                        
+                        Spacer()
+                            .frame(height: 20)
                         if(selectedImage != nil){
                             
                             Image(uiImage: selectedImage!)
+                                .resizable()
                                 .frame(width: 200,height: 200)
                                 .cornerRadius(120)
+                                .overlay(RoundedRectangle(cornerRadius: 150)
+                                    .stroke(lineWidth: 3)
+                                    .frame(width: 220,height: 220))
                             
                         }else{
-                            Image(systemName: "circle.fill")
-                                
+                            Image("ProfilePic")
                                 .resizable()
                                 .frame(width: 200,height: 200)
                                 .foregroundColor(.black.opacity(0.2))
+                                .cornerRadius(150)
+                                .overlay(RoundedRectangle(cornerRadius: 150)
+                                    .stroke(lineWidth: 3)
+                                    .frame(width: 220,height: 220))
                         }
                         Spacer()
                             .frame(height: 24.0)
@@ -45,11 +51,9 @@ struct MakeUserProfile: View {
                             //upload image
                             isImagePicker = true
                         }, label: {
-                            Image(systemName: "photo.fill")
-                                .resizable()
-                                .foregroundColor(Color.white)
-                                .frame(width: 43,height: 35)
-                        }).offset(y:-137)
+                            Text("Edit")
+                                .foregroundColor(.black)
+                        })
                         .sheet(isPresented: $isImagePicker, onDismiss: nil, content: {
                             ImagePicker(selecteImage: $selectedImage, isPickerShowing: $isImagePicker)
                         })
@@ -59,22 +63,55 @@ struct MakeUserProfile: View {
                         TextField("", text: $name)
                             .padding()
                             .foregroundColor(.white)
-                            .background(Color.black.opacity(0.2))
-                            .cornerRadius(23)
-                            .textFieldStyle(.plain)
                             .placeholder(when: name.isEmpty){
                                 Text("Enter Your name")
                                     .padding()
-                                    .foregroundColor(.black)
-                                    
+                                    .foregroundColor(.white)
                             }
+                            .background(Color.black)
+                            .cornerRadius(23)
+                            .textFieldStyle(.plain)
+                        
+                        Spacer()
+                            .frame(height: 30.0)
+                        TextField("", text: $bio)
+                            .padding()
+                            .multilineTextAlignment(.leading)
+                            .foregroundColor(.black)
+                            .cornerRadius(23)
+                            .textFieldStyle(.plain)
+                            .placeholder(when: bio.isEmpty){
+                                Text("Tell Us About You...")
+                                    .padding()
+                                    .foregroundColor(.black)
+                            }.overlay(RoundedRectangle(cornerRadius: 23)
+                                .stroke(lineWidth: 2))
                         
                         Spacer()
                         
-                    }.padding()
-                    
-                }
-            }.navigationTitle("Profile")
+                        HStack {
+                            Button(action: {
+                                //go somewhere
+                            }, label: {
+                                Text("Skip")
+                                    .foregroundColor(.black)
+                            })
+                            Spacer()
+                            
+                            Button(action: {
+                                //go somewhere
+                            }, label: {
+                                
+                                Text("Done")
+                                    .padding()
+                                    .background(Color.black)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(17)
+                            })
+                        }.padding()
+                    }
+                }.padding()
+            }.navigationTitle("Edit Profile")
         }
     }
     
