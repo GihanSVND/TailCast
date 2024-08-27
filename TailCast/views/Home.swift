@@ -13,6 +13,7 @@ import FirebaseStorage
 struct Home: View {
     @ObservedObject var model = ViewModel()
     
+    
     let index: Int = 1
     var body: some View {
         NavigationStack{
@@ -22,7 +23,6 @@ struct Home: View {
                         .foregroundColor(.white)
                         .ignoresSafeArea()
                     VStack{
-                        
                         if model.list.indices.contains(index) {
                             ScrollView(.horizontal, showsIndicators: false){
                                 HStack {
@@ -75,7 +75,6 @@ struct Home: View {
                                                     .frame(width: 100.0, height: 100.0)
                                                     .cornerRadius(23)
                                                 Text(model.list[3].Name)
-                                                
                                             }
                                         }.padding()
                                     }
@@ -87,11 +86,11 @@ struct Home: View {
                 }.padding()
             }
         }.navigationTitle("Home")
+            .navigationBarBackButtonHidden(true)
     }
     init(){
         model.getData()
     }
-    
 }
 
 #Preview {
