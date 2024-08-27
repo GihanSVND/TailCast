@@ -10,8 +10,8 @@ import UIKit
 import FirebaseFirestore
 import FirebaseStorage
 
+
 struct MakeUserProfile: View {
-    
     
     
     @State var isImagePicker: Bool = false
@@ -96,24 +96,56 @@ struct MakeUserProfile: View {
                         NavigationLink("Skip"){
                             Home()
                         }.foregroundColor(.black)
-                        Spacer()
-                        NavigationLink("Done") {
-                            Home()
-                        }.navigationTitle("Edite Profile")
-                            .padding()
-                            .background(Color.black)
-                            .foregroundColor(.white)
-                            .cornerRadius(17)
                         
+                        Spacer()
+                        
+                        Button(action: {
+                            uploadProfile()
+                        }, label: {
+                            Text("Done")
+                        }).padding()
+                            .foregroundColor(.white)
+                            .background(Color.black)
+                            .cornerRadius(17)
                     }
                     .padding()
+                    
+                    if name.isEmpty == false {
+                        NavigationLink("Home"){
+                            Home()
+                        }
+                    }
                 }
             }.padding()
         }.navigationTitle("Edit Profile")
     }
     
+    func uploadProfile(){
+        guard selectedImage != nil else{
+            return
+        }
+        
+        let storageReference = Storage.storage().reference()
+        
+        let imageData = selectedImage!.jpegData(compressionQuality: 0.8)
+        
+        guard imageData != nil else {
+            return
+        }
+        
+        let fileRef = storageReference.child("UserProfileImages/\(name).jpg")
+        
+        let uploadTask = fileRef.putData(imageData!, metadata: nil) { metadata, error in
+            if error == nil && metadata != nil{
+                //there is an error
+            }
+        }
+    }
     
 }
+
+
+
 extension View{
     func placeholder<Content : View>(
         when shouldShow: Bool,
