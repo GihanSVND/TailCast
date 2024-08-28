@@ -13,7 +13,7 @@ import FirebaseStorage
 
 struct MakeUserProfile: View {
     
-    
+    @State var completeProfile: Bool = false
     @State var isImagePicker: Bool = false
     @State var selectedImage: UIImage?
     @State var name: String = ""
@@ -92,36 +92,36 @@ struct MakeUserProfile: View {
                     
                     Spacer()
                     
-                    HStack{
-                        NavigationLink("Skip"){
-                            Home()
-                        }.foregroundColor(.black)
+                    NavigationStack{
+                        HStack{
+                            NavigationLink("Skip"){
+                                Home()
+                            }.foregroundColor(.black)
+                                .navigationTitle("Edit Profile")
+                            
+                            Spacer()
+                            
+                            Button(action: {
+                                uploadProfile()
+                                completeProfile = true
+                            }, label: {
+                                Text("Done")
+                            }).padding()
+                                .foregroundColor(.white)
+                                .background(Color.black)
+                                .cornerRadius(17)
+                        }.padding()
                         
-                        Spacer()
-                        
-                        Button(action: {
-                            uploadProfile()
-                        }, label: {
-                            Text("Done")
-                        }).padding()
-                            .foregroundColor(.white)
-                            .background(Color.black)
-                            .cornerRadius(17)
-                    }
-                    .padding()
-                    
-                    if name.isEmpty == false {
-                        NavigationLink("Home"){
-                            Home()
-                        }
+                    }.navigationDestination(isPresented: $completeProfile){
+                        Home()
                     }
                 }
             }.padding()
-        }.navigationTitle("Edit Profile")
+        }
     }
     
-    func uploadProfile(){
-        guard selectedImage != nil else{
+    func uploadProfile() {
+        guard selectedImage != nil else {
             return
         }
         
@@ -136,11 +136,27 @@ struct MakeUserProfile: View {
         let fileRef = storageReference.child("UserProfileImages/\(name).jpg")
         
         let uploadTask = fileRef.putData(imageData!, metadata: nil) { metadata, error in
-            if error == nil && metadata != nil{
-                //there is an error
+            if error == nil && metadata != nil {
+                // Image upload successful, now upload name and bio to Firestore
+                let db = Firestore.firestore()
+                
+                db.collection("User").addDocument(data: [
+                    "name": self.name,
+                    "bio": self.bio,
+                    "imageURL": fileRef.fullPath // Store the path to the uploaded image
+                ]) { error in
+                    if let error = error {
+                        print("Error adding document: \(error)")
+                    } else {
+                        print("Document successfully added!")
+                    }
+                }
+            } else {
+                print("Error uploading image: \(String(describing: error))")
             }
         }
     }
+
     
 }
 
