@@ -9,9 +9,10 @@ import Foundation
 import Firebase
 
 class ViewModel: ObservableObject{
-    @Published var list = [Authors]()
+    @Published var authorsList = [Authors]()
+    @Published var usersList = [Users]()
     
-    func getData(){
+    func getAuthorData(){
         let db = Firestore.firestore()
         
         db.collection("Authors").getDocuments { snapshot, error in
@@ -20,7 +21,7 @@ class ViewModel: ObservableObject{
                 if let snapshot = snapshot{
                     
                     DispatchQueue.main.async {
-                        self.list = snapshot.documents.map { docs in
+                        self.authorsList = snapshot.documents.map { docs in
                             return Authors(Id: docs.documentID, Name: docs["Name"] as? String ?? "", Book: docs["Book"] as? String ?? "")
                         }
                     }
@@ -31,4 +32,25 @@ class ViewModel: ObservableObject{
         }
     }
     
+    
+    func getUserData(){
+        let db = Firestore.firestore()
+        
+        db.collection("User").getDocuments {snapshot , error in
+            if error == nil{
+                
+                if let snapshot = snapshot{
+                    
+                    DispatchQueue.main.async {
+                        self.usersList = snapshot.documents.map {docs in
+                            return Users(Id: docs.documentID, Name: docs["name"] as? String ?? "", Bio: docs["bio"] as? String ?? "", imageURL: docs["imageURL"] as? String ?? "")
+                        }
+                    }
+                }
+                
+            } else{
+                print("Error fetching user data: \(String(describing: error))")
+            }
+        }
+    }
 }

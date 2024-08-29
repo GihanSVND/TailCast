@@ -12,6 +12,7 @@ import FirebaseStorage
 
 struct Home: View {
     @ObservedObject var model = ViewModel()
+    @State var profileImage: UIImage?
     
     
     let index: Int = 1
@@ -22,8 +23,10 @@ struct Home: View {
                     Rectangle()
                         .foregroundColor(.white)
                         .ignoresSafeArea()
+                    
                     VStack{
-                        if model.list.indices.contains(index) {
+                        
+                        if model.authorsList.indices.contains(index) {
                             ScrollView(.horizontal, showsIndicators: false){
                                 HStack {
                                     VStack {
@@ -35,7 +38,7 @@ struct Home: View {
                                                     .resizable()
                                                     .frame(width: 100.0, height: 100.0)
                                                     .cornerRadius(23)
-                                                Text(model.list[0].Name)
+                                                Text(model.authorsList[0].Name)
                                             }
                                         }.padding()
                                     }
@@ -48,7 +51,7 @@ struct Home: View {
                                                     .resizable()
                                                     .frame(width: 100.0, height: 100.0)
                                                     .cornerRadius(23)
-                                                Text(model.list[1].Name)
+                                                Text(model.authorsList[1].Name)
                                             }
                                         }.padding()
                                     }
@@ -61,7 +64,7 @@ struct Home: View {
                                                     .resizable()
                                                     .frame(width: 100.0, height: 100.0)
                                                     .cornerRadius(23)
-                                                Text(model.list[2].Name)
+                                                Text(model.authorsList[2].Name)
                                             }
                                         }.padding()
                                     }
@@ -74,7 +77,7 @@ struct Home: View {
                                                     .resizable()
                                                     .frame(width: 100.0, height: 100.0)
                                                     .cornerRadius(23)
-                                                Text(model.list[3].Name)
+                                                Text(model.authorsList[3].Name)
                                             }
                                         }.padding()
                                     }
@@ -84,14 +87,43 @@ struct Home: View {
                         }
                     }
                 }.padding()
+                    .navigationTitle("Home")
+                    .navigationBarBackButtonHidden(true)
+                    .toolbar{
+                        ToolbarItemGroup(placement: .topBarTrailing) {
+                            
+                            if let user = model.usersList.first{
+                                HStack{
+                                    if let image = profileImage{
+                                        Image(uiImage: image)
+                                            .resizable()
+                                            .frame(width: 40,height: 40)
+                                            .cornerRadius(50)
+                                                                                }else {
+                                        ProgressView()
+                                            .onAppear {
+                                                user.loadImage { img in
+                                                    self.profileImage = img
+                                                }
+                                            }
+                                    }
+                                }
+                            }
+                        }
+                    }
+            
             }
-        }.navigationTitle("Home")
-            .navigationBarBackButtonHidden(true)
+        }
     }
     init(){
-        model.getData()
+        model.getAuthorData()
+        model.getUserData()
+        
     }
 }
+
+
+
 
 #Preview {
     Home()
