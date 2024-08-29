@@ -11,14 +11,14 @@ struct ContentView: View {
     @ObservedObject var model = ViewModel()
     var body: some View {
         ZStack {
-            List(model.list) {item in
+            List(model.authorsList) {item in
                 Text(item.Name)
                 
             }
         }
     }
     init(){
-        model.getData()
+        model.getAuthorData()
     }
 }
 
