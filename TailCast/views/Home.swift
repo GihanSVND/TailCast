@@ -24,8 +24,10 @@ struct Home: View {
                         .foregroundColor(.white)
                         .ignoresSafeArea()
                     
-                    VStack{
-                        
+                    VStack(alignment: .leading){
+                        Text("Top Authors")
+                        Spacer()
+                            .frame(height: 10.0)
                         if model.authorsList.indices.contains(index) {
                             ScrollView(.horizontal, showsIndicators: false){
                                 HStack {
@@ -83,9 +85,32 @@ struct Home: View {
                                     }
                                 }.font(.caption)
                                     .foregroundColor(.black)
+                                
+                                
                             }
+                            
                         }
+                        Spacer()
+                        HStack{
+                            BookCard()
+                                .padding(.top, 25.0)
+                            Spacer()
+                            BookCard()
+                                .padding(.top, 25.0)
+                                .offset(y:30)
+                        }
+                        HStack{
+                            BookCard()
+                                .padding(.top, 25.0)
+                            Spacer()
+                            BookCard()
+                                .padding(.top, 25.0)
+                                .offset(y:30)
+                        }
+                        
                     }
+                    
+                    
                 }.padding()
                     .navigationTitle("Home")
                     .navigationBarBackButtonHidden(true)
@@ -99,7 +124,7 @@ struct Home: View {
                                             .resizable()
                                             .frame(width: 40,height: 40)
                                             .cornerRadius(50)
-                                                                                }else {
+                                    }else {
                                         ProgressView()
                                             .onAppear {
                                                 user.loadImage { img in
@@ -111,7 +136,7 @@ struct Home: View {
                             }
                         }
                     }
-            
+                
             }
         }
     }
@@ -122,8 +147,35 @@ struct Home: View {
     }
 }
 
-
-
+struct BookCard: View {
+    
+//    var bookTitle: String
+//    var author: String
+//    var bookCover: UIImage
+    
+    var body: some View {
+        VStack {
+            Image("Wolf of SIGHT")
+                .resizable()
+                .frame(width:147, height: 207.6)
+                .cornerRadius(17)
+            HStack {
+                Text("Wolf of SIGHT")
+                    .font(.subheadline)
+                .fontWeight(.bold)
+                Spacer()
+            }.padding(.leading)
+            HStack {
+                Text("by Trif Premade")
+                    .font(.footnote)
+                Spacer()
+            }.padding(.leading)
+            
+            
+        }
+        
+    }
+}
 
 #Preview {
     Home()
