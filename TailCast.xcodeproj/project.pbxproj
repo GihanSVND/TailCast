@@ -17,11 +17,15 @@
 		E20969F22C7304C700C7812D /* Authors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20969F12C7304C700C7812D /* Authors.swift */; };
 		E20969FC2C73066900C7812D /* viewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20969FB2C73066900C7812D /* viewModel.swift */; };
 		E20969FE2C7306E100C7812D /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20969FD2C7306E100C7812D /* Home.swift */; };
-		E2096A002C7314B000C7812D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E20969FF2C7314B000C7812D /* GoogleService-Info.plist */; };
 		E28863472C74C98A00506BB6 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E28863462C74C98A00506BB6 /* FirebaseAuth */; };
 		E28863492C74C98A00506BB6 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E28863482C74C98A00506BB6 /* FirebaseFirestore */; };
 		E288634B2C74C98A00506BB6 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E288634A2C74C98A00506BB6 /* FirebaseStorage */; };
 		E288634D2C74C9E100506BB6 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = E288634C2C74C9E100506BB6 /* FirebaseDatabase */; };
+		E2BBCD4B2C834EAA00B76E15 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BBCD4A2C834EAA00B76E15 /* Login.swift */; };
+		E2BBCD4D2C834F3B00B76E15 /* Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BBCD4C2C834F3B00B76E15 /* Signup.swift */; };
+		E2BBCD4F2C834FAC00B76E15 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BBCD4E2C834FAC00B76E15 /* AuthView.swift */; };
+		E2C1A5F92C83839800DBCC23 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E2C1A5F82C83839800DBCC23 /* GoogleService-Info.plist */; };
+		E2C1A5FB2C838F1000DBCC23 /* testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1A5FA2C838F1000DBCC23 /* testing.swift */; };
 		E2D432A02C745A0E005DC089 /* MakeUserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D4329F2C745A0E005DC089 /* MakeUserProfile.swift */; };
 		E2D432A22C745BA0005DC089 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D432A12C745BA0005DC089 /* ImagePicker.swift */; };
 		E2E04B9A2C801167000D184F /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E04B992C801167000D184F /* Users.swift */; };
@@ -58,7 +62,11 @@
 		E20969F12C7304C700C7812D /* Authors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authors.swift; sourceTree = "<group>"; };
 		E20969FB2C73066900C7812D /* viewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewModel.swift; sourceTree = "<group>"; };
 		E20969FD2C7306E100C7812D /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
-		E20969FF2C7314B000C7812D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E2BBCD4A2C834EAA00B76E15 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
+		E2BBCD4C2C834F3B00B76E15 /* Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup.swift; sourceTree = "<group>"; };
+		E2BBCD4E2C834FAC00B76E15 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		E2C1A5F82C83839800DBCC23 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E2C1A5FA2C838F1000DBCC23 /* testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testing.swift; sourceTree = "<group>"; };
 		E2D4329F2C745A0E005DC089 /* MakeUserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeUserProfile.swift; sourceTree = "<group>"; };
 		E2D432A12C745BA0005DC089 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		E2E04B992C801167000D184F /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
@@ -118,7 +126,7 @@
 			children = (
 				E20969C32C72FFFE00C7812D /* TailCastApp.swift */,
 				E20969C72C72FFFF00C7812D /* Assets.xcassets */,
-				E20969FF2C7314B000C7812D /* GoogleService-Info.plist */,
+				E2C1A5F82C83839800DBCC23 /* GoogleService-Info.plist */,
 				E20969F42C73053900C7812D /* views */,
 				E20969F32C73052600C7812D /* viewModels */,
 				E20969F02C73048C00C7812D /* Models */,
@@ -172,10 +180,14 @@
 		E20969F42C73053900C7812D /* views */ = {
 			isa = PBXGroup;
 			children = (
+				E2BBCD4E2C834FAC00B76E15 /* AuthView.swift */,
 				E20969C52C72FFFE00C7812D /* ContentView.swift */,
 				E20969FD2C7306E100C7812D /* Home.swift */,
 				E2D4329F2C745A0E005DC089 /* MakeUserProfile.swift */,
 				E2D432A12C745BA0005DC089 /* ImagePicker.swift */,
+				E2BBCD4A2C834EAA00B76E15 /* Login.swift */,
+				E2BBCD4C2C834F3B00B76E15 /* Signup.swift */,
+				E2C1A5FA2C838F1000DBCC23 /* testing.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -295,7 +307,7 @@
 			files = (
 				E20969CB2C72FFFF00C7812D /* Preview Assets.xcassets in Resources */,
 				E20969C82C72FFFF00C7812D /* Assets.xcassets in Resources */,
-				E2096A002C7314B000C7812D /* GoogleService-Info.plist in Resources */,
+				E2C1A5F92C83839800DBCC23 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,12 +333,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2E04B9A2C801167000D184F /* Users.swift in Sources */,
+				E2BBCD4D2C834F3B00B76E15 /* Signup.swift in Sources */,
+				E2C1A5FB2C838F1000DBCC23 /* testing.swift in Sources */,
 				E20969C62C72FFFE00C7812D /* ContentView.swift in Sources */,
 				E20969F22C7304C700C7812D /* Authors.swift in Sources */,
 				E20969FE2C7306E100C7812D /* Home.swift in Sources */,
 				E2D432A22C745BA0005DC089 /* ImagePicker.swift in Sources */,
 				E20969FC2C73066900C7812D /* viewModel.swift in Sources */,
+				E2BBCD4B2C834EAA00B76E15 /* Login.swift in Sources */,
 				E2D432A02C745A0E005DC089 /* MakeUserProfile.swift in Sources */,
+				E2BBCD4F2C834FAC00B76E15 /* AuthView.swift in Sources */,
 				E20969C42C72FFFE00C7812D /* TailCastApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
