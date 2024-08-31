@@ -18,6 +18,8 @@ struct MakeUserProfile: View {
     @State var selectedImage: UIImage?
     @State var name: String = ""
     @State var bio: String = ""
+    
+    
     var body: some View {
         NavigationStack{
             ZStack{
@@ -95,7 +97,7 @@ struct MakeUserProfile: View {
                     NavigationStack{
                         HStack{
                             NavigationLink("Skip"){
-                                Home()
+                                Authview()
                             }.foregroundColor(.black)
                                 .navigationTitle("Edit Profile")
                             
@@ -113,7 +115,7 @@ struct MakeUserProfile: View {
                         }.padding()
                         
                     }.navigationDestination(isPresented: $completeProfile){
-                        Home()
+                        //Home()
                     }
                 }
             }.padding()

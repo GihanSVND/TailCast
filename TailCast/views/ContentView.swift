@@ -8,17 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var model = ViewModel()
+    
+    @AppStorage("uId") var userID: String = ""
+    
     var body: some View {
-        ZStack {
-            List(model.authorsList) {item in
-                Text(item.Name)
-                
-            }
+        
+        if userID == ""{
+            Authview()
+        }else{
+            Home()
         }
-    }
-    init(){
-        model.getAuthorData()
     }
 }
 
