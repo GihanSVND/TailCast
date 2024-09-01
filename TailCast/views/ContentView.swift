@@ -10,13 +10,18 @@ import SwiftUI
 struct ContentView: View {
     
     @AppStorage("uId") var userID: String = ""
+    @AppStorage("madeProfile") var madeProfile: Bool = false
     
     var body: some View {
         
         if userID == ""{
             Authview()
         }else{
-            MakeUserProfile()
+            if madeProfile{
+                Home()
+            }else{
+                MakeUserProfile()
+            }
         }
     }
 }

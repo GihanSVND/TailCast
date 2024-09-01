@@ -19,6 +19,9 @@ struct MakeUserProfile: View {
     @State var name: String = ""
     @State var bio: String = ""
     @AppStorage("uId") var userID: String = ""
+    @AppStorage("madeProfile") var madeProfile: Bool = false
+    @ObservedObject var model = ViewModel()
+    @State var documentAdded:Bool = false
     
     var body: some View {
         NavigationStack{
@@ -100,12 +103,17 @@ struct MakeUserProfile: View {
                                 Home()
                             }.foregroundColor(.black)
                                 .navigationTitle("Edit Profile")
-                            
                             Spacer()
                             
                             Button(action: {
-                                uploadProfile()
-                                completeProfile = true
+                                if (model.usersList.first(where: {$0.userID == userID}) == nil){
+                                    uploadProfile()
+                                }
+                                
+                                if documentAdded{
+                                    madeProfile = true
+                                    print("Profile updated")
+                                }
                             }, label: {
                                 Text("Done")
                             }).padding()
@@ -113,8 +121,7 @@ struct MakeUserProfile: View {
                                 .background(Color.black)
                                 .cornerRadius(17)
                         }.padding()
-                        
-                    }.navigationDestination(isPresented: $completeProfile){
+                    }.navigationDestination(isPresented: $madeProfile){
                         Home()
                     }
                 }
@@ -126,6 +133,7 @@ struct MakeUserProfile: View {
         guard selectedImage != nil else {
             return
         }
+        
         
         let storageReference = Storage.storage().reference()
         
@@ -150,7 +158,9 @@ struct MakeUserProfile: View {
                 ]) { error in
                     if let error = error {
                         print("Error adding document: \(error)")
+                        
                     } else {
+                        documentAdded = true
                         print("Document successfully added!")
                     }
                 }
@@ -159,7 +169,7 @@ struct MakeUserProfile: View {
             }
         }
     }
-
+    
     
 }
 
