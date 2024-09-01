@@ -16,7 +16,7 @@ struct TailCastApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            MakeUserProfile()
+            ContentView()
         }
     }
 }

@@ -12,12 +12,14 @@ import FirebaseStorage
 class Users: Identifiable{
     
     var id: String
+    var userID: String
     var Name: String
     var Bio: String
     var imageURL: String
     
-    init(Id: String, Name: String, Bio: String, imageURL: String) {
+    init(Id: String,userID: String, Name: String, Bio: String, imageURL: String) {
         self.id = Id
+        self.userID = userID
         self.Name = Name
         self.Bio = Bio
         self.imageURL = imageURL

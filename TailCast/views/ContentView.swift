@@ -16,7 +16,7 @@ struct ContentView: View {
         if userID == ""{
             Authview()
         }else{
-            Home()
+            MakeUserProfile()
         }
     }
 }
