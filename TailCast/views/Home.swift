@@ -9,11 +9,12 @@ import SwiftUI
 import Firebase
 import FirebaseCore
 import FirebaseStorage
+import FirebaseAuth
 
 struct Home: View {
     @ObservedObject var model = ViewModel()
     @State var profileImage: UIImage?
-    
+    @AppStorage("uId") var userID: String = ""
     
     let index: Int = 1
     var body: some View {
@@ -90,6 +91,24 @@ struct Home: View {
                             }
                             
                         }
+                        Button {
+                            let firebaseAuth = Auth.auth()
+                            do {
+                                try firebaseAuth.signOut()
+                                withAnimation {
+                                    withAnimation {
+                                        userID = ""
+                                    }
+                                }
+                                
+                                
+                            } catch let signOutError as NSError {
+                                print("Error signing out: %@", signOutError)
+                            }
+                        } label: {
+                            Text("Logout")
+                        }
+
                         Spacer()
                         HStack{
                             BookCard()
@@ -117,7 +136,7 @@ struct Home: View {
                     .toolbar{
                         ToolbarItemGroup(placement: .topBarTrailing) {
                             
-                            if let user = model.usersList.first{
+                            if let user = model.usersList.first(where: {$0.userID == userID}){
                                 HStack{
                                     if let image = profileImage{
                                         Image(uiImage: image)

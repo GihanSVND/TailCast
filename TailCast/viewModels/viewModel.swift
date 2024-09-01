@@ -43,7 +43,7 @@ class ViewModel: ObservableObject{
                     
                     DispatchQueue.main.async {
                         self.usersList = snapshot.documents.map {docs in
-                            return Users(Id: docs.documentID, Name: docs["name"] as? String ?? "", Bio: docs["bio"] as? String ?? "", imageURL: docs["imageURL"] as? String ?? "")
+                            return Users(Id: docs.documentID, userID: docs["userID"] as? String ?? "", Name: docs["name"] as? String ?? "", Bio: docs["bio"] as? String ?? "", imageURL: docs["imageURL"] as? String ?? "")
                         }
                     }
                 }

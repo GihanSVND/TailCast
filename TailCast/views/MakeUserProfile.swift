@@ -18,7 +18,7 @@ struct MakeUserProfile: View {
     @State var selectedImage: UIImage?
     @State var name: String = ""
     @State var bio: String = ""
-    
+    @AppStorage("uId") var userID: String = ""
     
     var body: some View {
         NavigationStack{
@@ -97,7 +97,7 @@ struct MakeUserProfile: View {
                     NavigationStack{
                         HStack{
                             NavigationLink("Skip"){
-                                Authview()
+                                Home()
                             }.foregroundColor(.black)
                                 .navigationTitle("Edit Profile")
                             
@@ -115,7 +115,7 @@ struct MakeUserProfile: View {
                         }.padding()
                         
                     }.navigationDestination(isPresented: $completeProfile){
-                        //Home()
+                        Home()
                     }
                 }
             }.padding()
@@ -143,6 +143,7 @@ struct MakeUserProfile: View {
                 let db = Firestore.firestore()
                 
                 db.collection("User").addDocument(data: [
+                    "userID":self.userID,
                     "name": self.name,
                     "bio": self.bio,
                     "imageURL": fileRef.fullPath // Store the path to the uploaded image
