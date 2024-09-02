@@ -109,11 +109,9 @@ struct MakeUserProfile: View {
                                 if (model.usersList.first(where: {$0.userID == userID}) == nil){
                                     uploadProfile()
                                 }
+                                madeProfile = true
+                                print("Profile updated")
                                 
-                                if documentAdded{
-                                    madeProfile = true
-                                    print("Profile updated")
-                                }
                             }, label: {
                                 Text("Done")
                             }).padding()

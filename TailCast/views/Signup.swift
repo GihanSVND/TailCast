@@ -112,12 +112,13 @@ struct Signup: View {
                                 return
                             }
                             
+                            
                             if let authResult = authResult{
                                 print(authResult.user.uid)
                                 withAnimation {
                                     userID = authResult.user.uid
-                                    
                                 }
+                                
                             }
                         }
                     } label: {

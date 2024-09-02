@@ -139,12 +139,16 @@ struct Home: View {
                             if let user = model.usersList.first(where: {$0.userID == userID}){
                                 HStack{
                                     if let image = profileImage{
+
                                         Image(uiImage: image)
                                             .resizable()
                                             .frame(width: 40,height: 40)
                                             .cornerRadius(50)
                                     }else {
-                                        ProgressView()
+                                        Image(systemName: "person.crop.circle.fill")
+                                            .resizable()
+                                            .frame(width: 40,height: 40)
+                                            .cornerRadius(50)
                                             .onAppear {
                                                 user.loadImage { img in
                                                     self.profileImage = img
@@ -152,6 +156,11 @@ struct Home: View {
                                             }
                                     }
                                 }
+                            }else{
+                                Image(systemName: "person.crop.circle.fill")
+                                    .resizable()
+                                    .frame(width: 40,height: 40)
+                                    .cornerRadius(50)
                             }
                         }
                     }
