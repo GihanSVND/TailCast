@@ -17,7 +17,7 @@ struct ContentView: View {
         if userID == ""{
             Authview()
         }else{
-            Home()
+            tabView()
         }
     }
 }
