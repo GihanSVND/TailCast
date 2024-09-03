@@ -17,13 +17,12 @@ struct Home: View {
     @AppStorage("uId") var userID: String = ""
     
     let index: Int = 1
+    @State var selectedView = 0
     var body: some View {
         NavigationStack{
             ScrollView{
+                
                 ZStack{
-                    Rectangle()
-                        .foregroundColor(.white)
-                        .ignoresSafeArea()
                     
                     VStack(alignment: .leading){
                         Text("Top Authors")
@@ -108,7 +107,7 @@ struct Home: View {
                         } label: {
                             Text("Logout")
                         }
-
+                        
                         Spacer()
                         HStack{
                             BookCard()
@@ -139,7 +138,7 @@ struct Home: View {
                             if let user = model.usersList.first(where: {$0.userID == userID}){
                                 HStack{
                                     if let image = profileImage{
-
+                                        
                                         Image(uiImage: image)
                                             .resizable()
                                             .frame(width: 40,height: 40)
@@ -165,6 +164,7 @@ struct Home: View {
                         }
                     }
                 
+                
             }
         }
     }
@@ -177,9 +177,9 @@ struct Home: View {
 
 struct BookCard: View {
     
-//    var bookTitle: String
-//    var author: String
-//    var bookCover: UIImage
+    //    var bookTitle: String
+    //    var author: String
+    //    var bookCover: UIImage
     
     var body: some View {
         VStack {
@@ -190,7 +190,7 @@ struct BookCard: View {
             HStack {
                 Text("Wolf of SIGHT")
                     .font(.subheadline)
-                .fontWeight(.bold)
+                    .fontWeight(.bold)
                 Spacer()
             }.padding(.leading)
             HStack {
