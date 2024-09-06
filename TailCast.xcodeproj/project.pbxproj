@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E2023E502C8B7F87007D95FF /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2023E4F2C8B7F87007D95FF /* LandingView.swift */; };
 		E20969C42C72FFFE00C7812D /* TailCastApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20969C32C72FFFE00C7812D /* TailCastApp.swift */; };
 		E20969C62C72FFFE00C7812D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20969C52C72FFFE00C7812D /* ContentView.swift */; };
 		E20969C82C72FFFF00C7812D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E20969C72C72FFFF00C7812D /* Assets.xcassets */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E2023E4F2C8B7F87007D95FF /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		E20969C02C72FFFE00C7812D /* TailCast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TailCast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E20969C32C72FFFE00C7812D /* TailCastApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TailCastApp.swift; sourceTree = "<group>"; };
 		E20969C52C72FFFE00C7812D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				E2C1A5FA2C838F1000DBCC23 /* tabView.swift */,
 				E2AF4E772C85FF43000CCB3A /* GenerateStory.swift */,
 				E258A3CC2C864450003A5DB0 /* GeminiAPIKey.swift */,
+				E2023E4F2C8B7F87007D95FF /* LandingView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				E20969C62C72FFFE00C7812D /* ContentView.swift in Sources */,
 				E20969F22C7304C700C7812D /* Authors.swift in Sources */,
 				E20969FE2C7306E100C7812D /* Home.swift in Sources */,
+				E2023E502C8B7F87007D95FF /* LandingView.swift in Sources */,
 				E2D432A22C745BA0005DC089 /* ImagePicker.swift in Sources */,
 				E20969FC2C73066900C7812D /* viewModel.swift in Sources */,
 				E2BBCD4B2C834EAA00B76E15 /* Login.swift in Sources */,
