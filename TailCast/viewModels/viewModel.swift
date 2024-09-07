@@ -11,6 +11,7 @@ import Firebase
 class ViewModel: ObservableObject{
     @Published var authorsList = [Authors]()
     @Published var usersList = [Users]()
+    @Published var bookList = [Books]()
     
     func getAuthorData(){
         let db = Firestore.firestore()
@@ -44,6 +45,27 @@ class ViewModel: ObservableObject{
                     DispatchQueue.main.async {
                         self.usersList = snapshot.documents.map {docs in
                             return Users(Id: docs.documentID, userID: docs["userID"] as? String ?? "", Name: docs["name"] as? String ?? "", Bio: docs["bio"] as? String ?? "", imageURL: docs["imageURL"] as? String ?? "")
+                        }
+                    }
+                }
+                
+            } else{
+                print("Error fetching user data: \(String(describing: error))")
+            }
+        }
+    }
+    
+    func getBookData(){
+        let db = Firestore.firestore()
+        
+        db.collection("Books").getDocuments {snapshot , error in
+            if error == nil{
+                
+                if let snapshot = snapshot{
+                    
+                    DispatchQueue.main.async {
+                        self.bookList = snapshot.documents.map {docs in
+                            return Books(id: docs.documentID,  Name: docs["Name"] as? String ?? "",  Author: docs["Author"] as? String ?? "",  BookLink: docs["BookLink"] as? String ?? "")
                         }
                     }
                 }

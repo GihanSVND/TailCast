@@ -31,6 +31,7 @@ struct Home: View {
                     VStack(alignment: .leading){
                         Divider()
                         Text("Top Authors")
+                        
                         Spacer()
                             .frame(height: 5.0)
                         if model.authorsList.indices.contains(index) {
@@ -49,12 +50,12 @@ struct Home: View {
                                                         .resizable()
                                                         .frame(width: 100.0, height: 100.0)
                                                         .cornerRadius(7)
-                                                        
+                                                    
                                                         .shadow(color: .black, radius: 0, x: 5, y: 5)
-                                                        
+                                                    
                                                     Text(author.Name)
                                                         .padding(.top, 5.0)
-                                            
+                                                    
                                                 }else{
                                                     ProgressView()
                                                         .frame(width: 100.0, height: 100.0)
@@ -84,12 +85,12 @@ struct Home: View {
                                                         .resizable()
                                                         .frame(width: 100.0, height: 100.0)
                                                         .cornerRadius(7)
-                                                        
+                                                    
                                                         .shadow(color: .black, radius: 0, x: 5, y: 5)
-                                                        
+                                                    
                                                     Text(author.Name)
                                                         .padding(.top, 5.0)
-                                            
+                                                    
                                                 }else{
                                                     ProgressView()
                                                         .frame(width: 100.0, height: 100.0)
@@ -119,12 +120,12 @@ struct Home: View {
                                                         .resizable()
                                                         .frame(width: 100.0, height: 100.0)
                                                         .cornerRadius(7)
-                                                        
+                                                    
                                                         .shadow(color: .black, radius: 0, x: 5, y: 5)
-                                                        
+                                                    
                                                     Text(author.Name)
                                                         .padding(.top, 5.0)
-                                            
+                                                    
                                                 }else{
                                                     ProgressView()
                                                         .frame(width: 100.0, height: 100.0)
@@ -141,6 +142,7 @@ struct Home: View {
                                             
                                         }.padding()
                                     }
+                                    
                                     VStack {
                                         Button {
                                             //go some where
@@ -154,12 +156,12 @@ struct Home: View {
                                                         .resizable()
                                                         .frame(width: 100.0, height: 100.0)
                                                         .cornerRadius(7)
-                                                        
+                                                    
                                                         .shadow(color: .black, radius: 0, x: 5, y: 5)
-                                                        
+                                                    
                                                     Text(author.Name)
                                                         .padding(.top, 5.0)
-                                            
+                                                    
                                                 }else{
                                                     ProgressView()
                                                         .frame(width: 100.0, height: 100.0)
@@ -182,27 +184,15 @@ struct Home: View {
                                 .foregroundColor(.black)
                         }
                         Divider()
-                        
-                        
+                        Spacer()
+                        HStack{
+                            
+                            Spacer()
+                            
+                        }
                     }
-                                        
-                    Spacer()
-                    //                    HStack{
-                    //                        BookCard()
-                    //                            .padding(.top, 25.0)
-                    //                        Spacer()
-                    //                        BookCard()
-                    //                            .padding(.top, 25.0)
-                    //                            .offset(y:30)
-                    //                    }
-                    //                    HStack{
-                    //                        BookCard()
-                    //                            .padding(.top, 25.0)
-                    //                        Spacer()
-                    //                        BookCard()
-                    //                            .padding(.top, 25.0)
-                    //                            .offset(y:30)
-                    //                    }
+                    
+                    
                     
                 }
                 
@@ -242,7 +232,7 @@ struct Home: View {
                             }
                         }
                         Spacer()
-                                                
+                        
                         
                     }
                 }
@@ -255,30 +245,32 @@ struct Home: View {
     init(){
         model.getAuthorData()
         model.getUserData()
+        model.getBookData()
         
     }
 }
 
 struct BookCard: View {
     
-    //    var bookTitle: String
-    //    var author: String
-    //    var bookCover: UIImage
+        var bookTitle: String
+        var author: String
+        var bookCover: UIImage
     
     var body: some View {
+        
         VStack {
-            Image("Wolf of SIGHT")
+            Image(uiImage: bookCover)
                 .resizable()
                 .frame(width:147, height: 207.6)
                 .cornerRadius(17)
             HStack {
-                Text("Wolf of SIGHT")
+                Text(bookTitle)
                     .font(.subheadline)
                     .fontWeight(.bold)
                 Spacer()
             }.padding(.leading)
             HStack {
-                Text("by Trif Premade")
+                Text(author)
                     .font(.footnote)
                 Spacer()
             }.padding(.leading)
