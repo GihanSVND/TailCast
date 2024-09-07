@@ -20,6 +20,7 @@
 		E20969FE2C7306E100C7812D /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20969FD2C7306E100C7812D /* Home.swift */; };
 		E210A7152C88D61800CB1C7C /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = E210A7142C88D61800CB1C7C /* GoogleGenerativeAI */; };
 		E258A3CD2C864450003A5DB0 /* GeminiAPIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E258A3CC2C864450003A5DB0 /* GeminiAPIKey.swift */; };
+		E27500DE2C8C2BF900C4A036 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27500DD2C8C2BF900C4A036 /* UserProfile.swift */; };
 		E277BB8E2C8948E100539488 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E277BB8D2C8948E100539488 /* FirebaseAuth */; };
 		E277BB902C8948E100539488 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = E277BB8F2C8948E100539488 /* FirebaseDatabase */; };
 		E277BB922C8948E100539488 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E277BB912C8948E100539488 /* FirebaseFirestore */; };
@@ -69,6 +70,7 @@
 		E20969FB2C73066900C7812D /* viewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewModel.swift; sourceTree = "<group>"; };
 		E20969FD2C7306E100C7812D /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		E258A3CC2C864450003A5DB0 /* GeminiAPIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeminiAPIKey.swift; sourceTree = "<group>"; };
+		E27500DD2C8C2BF900C4A036 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		E2AF4E752C85FF15000CCB3A /* GenerativeAI-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GenerativeAI-Info.plist"; sourceTree = "<group>"; };
 		E2AF4E772C85FF43000CCB3A /* GenerateStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateStory.swift; sourceTree = "<group>"; };
 		E2BBCD4A2C834EAA00B76E15 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				E2AF4E772C85FF43000CCB3A /* GenerateStory.swift */,
 				E258A3CC2C864450003A5DB0 /* GeminiAPIKey.swift */,
 				E2023E4F2C8B7F87007D95FF /* LandingView.swift */,
+				E27500DD2C8C2BF900C4A036 /* UserProfile.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				E2BBCD4B2C834EAA00B76E15 /* Login.swift in Sources */,
 				E2D432A02C745A0E005DC089 /* MakeUserProfile.swift in Sources */,
 				E2BBCD4F2C834FAC00B76E15 /* AuthView.swift in Sources */,
+				E27500DE2C8C2BF900C4A036 /* UserProfile.swift in Sources */,
 				E2AF4E782C85FF43000CCB3A /* GenerateStory.swift in Sources */,
 				E20969C42C72FFFE00C7812D /* TailCastApp.swift in Sources */,
 				E258A3CD2C864450003A5DB0 /* GeminiAPIKey.swift in Sources */,
