@@ -21,7 +21,7 @@ struct tabView: View {
                     Image(systemName: "book")
                     Text("Generate Story")
                 }.tag(1)
-        }.accentColor(.black)
+        }
     }
 }
 
