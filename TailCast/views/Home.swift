@@ -14,6 +14,10 @@ import FirebaseAuth
 struct Home: View {
     @ObservedObject var model = ViewModel()
     @State var profileImage: UIImage?
+    @State var authorImage0: UIImage?
+    @State var authorImage1: UIImage?
+    @State var authorImage2: UIImage?
+    @State var authorImage3: UIImage?
     @AppStorage("uId") var userID: String = ""
     
     let index: Int = 1
@@ -25,9 +29,10 @@ struct Home: View {
                 ZStack{
                     
                     VStack(alignment: .leading){
+                        Divider()
                         Text("Top Authors")
                         Spacer()
-                            .frame(height: 10.0)
+                            .frame(height: 5.0)
                         if model.authorsList.indices.contains(index) {
                             ScrollView(.horizontal, showsIndicators: false){
                                 HStack {
@@ -36,138 +41,217 @@ struct Home: View {
                                             //go some where
                                         } label: {
                                             VStack {
-                                                Image("Author01")
-                                                    .resizable()
-                                                    .frame(width: 100.0, height: 100.0)
-                                                    .cornerRadius(23)
-                                                Text(model.authorsList[0].Name)
-                                            }
-                                        }.padding()
-                                    }
-                                    VStack {
-                                        Button {
-                                            //go some where
-                                        } label: {
-                                            VStack {
-                                                Image("Author01")
-                                                    .resizable()
-                                                    .frame(width: 100.0, height: 100.0)
-                                                    .cornerRadius(23)
-                                                Text(model.authorsList[1].Name)
-                                            }
-                                        }.padding()
-                                    }
-                                    VStack {
-                                        Button {
-                                            //go some where
-                                        } label: {
-                                            VStack {
-                                                Image("Author01")
-                                                    .resizable()
-                                                    .frame(width: 100.0, height: 100.0)
-                                                    .cornerRadius(23)
-                                                Text(model.authorsList[2].Name)
-                                            }
-                                        }.padding()
-                                    }
-                                    VStack {
-                                        Button {
-                                            //go some where
-                                        } label: {
-                                            VStack {
-                                                Image("Author01")
-                                                    .resizable()
-                                                    .frame(width: 100.0, height: 100.0)
-                                                    .cornerRadius(23)
-                                                Text(model.authorsList[3].Name)
-                                            }
-                                        }.padding()
-                                    }
-                                }.font(.caption)
-                                    .foregroundColor(.black)
-                                
-                                
-                            }
-                            
-                        }
-                        Button {
-                            let firebaseAuth = Auth.auth()
-                            do {
-                                try firebaseAuth.signOut()
-                                withAnimation {
-                                    withAnimation {
-                                        userID = ""
-                                    }
-                                }
-                                
-                                
-                            } catch let signOutError as NSError {
-                                print("Error signing out: %@", signOutError)
-                            }
-                        } label: {
-                            Text("Logout")
-                        }
-                        
-                        Spacer()
-                        HStack{
-                            BookCard()
-                                .padding(.top, 25.0)
-                            Spacer()
-                            BookCard()
-                                .padding(.top, 25.0)
-                                .offset(y:30)
-                        }
-                        HStack{
-                            BookCard()
-                                .padding(.top, 25.0)
-                            Spacer()
-                            BookCard()
-                                .padding(.top, 25.0)
-                                .offset(y:30)
-                        }
-                        
-                    }
-                    
-                    
-                }.padding()
-                    .navigationTitle("Home")
-                    .navigationBarBackButtonHidden(true)
-                    .toolbar{
-                        ToolbarItemGroup(placement: .topBarTrailing) {
-                            
-                            if let user = model.usersList.first(where: {$0.userID == userID}){
-                                HStack{
-                                    if let image = profileImage{
-                                        
-                                        Image(uiImage: image)
-                                            .resizable()
-                                            .frame(width: 40,height: 40)
-                                            .cornerRadius(50)
-                                    }else {
-                                        Image(systemName: "person.crop.circle.fill")
-                                            .resizable()
-                                            .frame(width: 40,height: 40)
-                                            .cornerRadius(50)
-                                            .onAppear {
-                                                user.loadImage { img in
-                                                    self.profileImage = img
+                                                
+                                                let author = model.authorsList[0]
+                                                
+                                                if let image = authorImage0{
+                                                    Image(uiImage: image)
+                                                        .resizable()
+                                                        .frame(width: 100.0, height: 100.0)
+                                                        .cornerRadius(7)
+                                                        
+                                                        .shadow(color: .black, radius: 0, x: 5, y: 5)
+                                                        
+                                                    Text(author.Name)
+                                                        .padding(.top, 5.0)
+                                            
+                                                }else{
+                                                    ProgressView()
+                                                        .frame(width: 100.0, height: 100.0)
+                                                        .cornerRadius(7)
+                                                        .onAppear{
+                                                            author.loadAuthorImage{img in
+                                                                self.authorImage0 = img
+                                                                
+                                                            }
+                                                        }
+                                                    Text(author.Name)
                                                 }
                                             }
+                                            
+                                        }.padding()
+                                    }
+                                    VStack {
+                                        Button {
+                                            //go some where
+                                        } label: {
+                                            VStack {
+                                                
+                                                let author = model.authorsList[1]
+                                                
+                                                if let image = authorImage1{
+                                                    Image(uiImage: image)
+                                                        .resizable()
+                                                        .frame(width: 100.0, height: 100.0)
+                                                        .cornerRadius(7)
+                                                        
+                                                        .shadow(color: .black, radius: 0, x: 5, y: 5)
+                                                        
+                                                    Text(author.Name)
+                                                        .padding(.top, 5.0)
+                                            
+                                                }else{
+                                                    ProgressView()
+                                                        .frame(width: 100.0, height: 100.0)
+                                                        .cornerRadius(7)
+                                                        .onAppear{
+                                                            author.loadAuthorImage{img in
+                                                                self.authorImage1 = img
+                                                                
+                                                            }
+                                                        }
+                                                    Text(author.Name)
+                                                }
+                                            }
+                                            
+                                        }.padding()
+                                    }
+                                    VStack {
+                                        Button {
+                                            //go some where
+                                        } label: {
+                                            VStack {
+                                                
+                                                let author = model.authorsList[2]
+                                                
+                                                if let image = authorImage2{
+                                                    Image(uiImage: image)
+                                                        .resizable()
+                                                        .frame(width: 100.0, height: 100.0)
+                                                        .cornerRadius(7)
+                                                        
+                                                        .shadow(color: .black, radius: 0, x: 5, y: 5)
+                                                        
+                                                    Text(author.Name)
+                                                        .padding(.top, 5.0)
+                                            
+                                                }else{
+                                                    ProgressView()
+                                                        .frame(width: 100.0, height: 100.0)
+                                                        .cornerRadius(7)
+                                                        .onAppear{
+                                                            author.loadAuthorImage{img in
+                                                                self.authorImage2 = img
+                                                                
+                                                            }
+                                                        }
+                                                    Text(author.Name)
+                                                }
+                                            }
+                                            
+                                        }.padding()
+                                    }
+                                    VStack {
+                                        Button {
+                                            //go some where
+                                        } label: {
+                                            VStack {
+                                                
+                                                let author = model.authorsList[3]
+                                                
+                                                if let image = authorImage3{
+                                                    Image(uiImage: image)
+                                                        .resizable()
+                                                        .frame(width: 100.0, height: 100.0)
+                                                        .cornerRadius(7)
+                                                        
+                                                        .shadow(color: .black, radius: 0, x: 5, y: 5)
+                                                        
+                                                    Text(author.Name)
+                                                        .padding(.top, 5.0)
+                                            
+                                                }else{
+                                                    ProgressView()
+                                                        .frame(width: 100.0, height: 100.0)
+                                                        .cornerRadius(7)
+                                                        .onAppear{
+                                                            author.loadAuthorImage{img in
+                                                                self.authorImage3 = img
+                                                                
+                                                            }
+                                                        }
+                                                    Text(author.Name)
+                                                }
+                                            }
+                                            
+                                        }.padding()
                                     }
                                 }
-                            }else{
-                                Image(systemName: "person.crop.circle.fill")
-                                    .resizable()
-                                    .frame(width: 40,height: 40)
-                                    .cornerRadius(50)
+                                
+                            }.font(.caption)
+                                .foregroundColor(.black)
+                        }
+                        Divider()
+                        
+                        
+                    }
+                                        
+                    Spacer()
+                    //                    HStack{
+                    //                        BookCard()
+                    //                            .padding(.top, 25.0)
+                    //                        Spacer()
+                    //                        BookCard()
+                    //                            .padding(.top, 25.0)
+                    //                            .offset(y:30)
+                    //                    }
+                    //                    HStack{
+                    //                        BookCard()
+                    //                            .padding(.top, 25.0)
+                    //                        Spacer()
+                    //                        BookCard()
+                    //                            .padding(.top, 25.0)
+                    //                            .offset(y:30)
+                    //                    }
+                    
+                }
+                
+                
+            }.padding()
+                .navigationTitle("Home")
+                .navigationBarBackButtonHidden(true)
+                .toolbar{
+                    ToolbarItemGroup(placement: .topBarTrailing) {
+                        NavigationLink(destination: UserProfile()){
+                            HStack{
+                                if let user = model.usersList.first(where: {$0.userID == userID}){
+                                    HStack{
+                                        if let image = profileImage{
+                                            Image(uiImage: image)
+                                                .resizable()
+                                                .frame(width: 40,height: 40)
+                                                .cornerRadius(50)
+                                        }else {
+                                            Image(systemName: "person.crop.circle.fill")
+                                                .resizable()
+                                                .frame(width: 40,height: 40)
+                                                .cornerRadius(50)
+                                                .onAppear {
+                                                    user.loadImage { img in
+                                                        self.profileImage = img
+                                                    }
+                                                }
+                                        }
+                                    }
+                                }else{
+                                    Image(systemName: "person.crop.circle.fill")
+                                        .resizable()
+                                        .frame(width: 40,height: 40)
+                                        .cornerRadius(50)
+                                }
                             }
                         }
+                        Spacer()
+                                                
+                        
                     }
-                
-                
-            }
+                }
+            
+            
         }
     }
+    
+    
     init(){
         model.getAuthorData()
         model.getUserData()
