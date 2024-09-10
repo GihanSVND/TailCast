@@ -22,4 +22,16 @@ class Books: Identifiable{
         self.Author = Author
         self.BookLink = BookLink
     }
+    func loadBookCover(completion: @escaping (UIImage?) -> Void) {
+        
+        let storageReference = Storage.storage().reference(withPath: BookLink)
+        storageReference.getData(maxSize: 5 * 1024 * 1024) { data, error in
+            if let data = data, error == nil {
+                completion(UIImage(data: data))
+            } else {
+                print("Error loading image: \(String(describing: error))")
+                completion(nil)
+            }
+        }
+    }
 }
