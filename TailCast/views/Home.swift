@@ -18,18 +18,24 @@ struct Home: View {
     @State var authorImage1: UIImage?
     @State var authorImage2: UIImage?
     @State var authorImage3: UIImage?
+    @State var bookCover0: UIImage?
+    @State var bookCover1: UIImage?
+    @State var bookCover2: UIImage?
+    @State var bookCover3: UIImage?
     @AppStorage("uId") var userID: String = ""
     
     let index: Int = 1
+    
     @State var selectedView = 0
     var body: some View {
         NavigationStack{
+            Divider()
             ScrollView{
                 
                 ZStack{
                     
                     VStack(alignment: .leading){
-                        Divider()
+                        
                         Text("Top Authors")
                         
                         Spacer()
@@ -151,6 +157,7 @@ struct Home: View {
                                                 
                                                 let author = model.authorsList[3]
                                                 
+                                                
                                                 if let image = authorImage3{
                                                     Image(uiImage: image)
                                                         .resizable()
@@ -182,14 +189,51 @@ struct Home: View {
                                 
                             }.font(.caption)
                                 .foregroundColor(.black)
-                        }
-                        Divider()
-                        Spacer()
-                        HStack{
                             
+                            Divider()
                             Spacer()
+                            HStack{
+                                Button {
+                                    //go some where
+                                } label: {
+                                    VStack {
+                                        
+                                        let book = model.bookList[0]
+                                        
+                                        
+                                        if let image = bookCover0{
+                                            Image(uiImage: image)
+                                                .resizable()
+                                                .frame(width: 157, height: 207)
+                                                .cornerRadius(7)
+                                            
+                                                .shadow(color: .black, radius: 0, x: 5, y: 5)
+                                            
+                                            Text(book.Name)
+                                                .padding(.top, 5.0)
+                                            
+                                        }else{
+                                            ProgressView()
+                                                .frame(width: 157, height: 207)
+                                                .cornerRadius(7)
+                                                .onAppear{
+                                                    book.loadBookCover{img in
+                                                        self.bookCover0 = img
+                                                        
+                                                    }
+                                                }
+                                            Text(book.Name)
+                                        }
+                                    }
+                                    
+                                }.padding()
+                                
+                            }
+                            
                             
                         }
+                        
+                        
                     }
                     
                     
