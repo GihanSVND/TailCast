@@ -19,6 +19,7 @@
 		E20969FC2C73066900C7812D /* viewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20969FB2C73066900C7812D /* viewModel.swift */; };
 		E20969FE2C7306E100C7812D /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20969FD2C7306E100C7812D /* Home.swift */; };
 		E210A7152C88D61800CB1C7C /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = E210A7142C88D61800CB1C7C /* GoogleGenerativeAI */; };
+		E24A578D2C91FCA70092D71E /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24A578C2C91FCA70092D71E /* Library.swift */; };
 		E258A3CD2C864450003A5DB0 /* GeminiAPIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E258A3CC2C864450003A5DB0 /* GeminiAPIKey.swift */; };
 		E27500DE2C8C2BF900C4A036 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27500DD2C8C2BF900C4A036 /* UserProfile.swift */; };
 		E277BB8E2C8948E100539488 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E277BB8D2C8948E100539488 /* FirebaseAuth */; };
@@ -70,6 +71,7 @@
 		E20969F12C7304C700C7812D /* Authors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authors.swift; sourceTree = "<group>"; };
 		E20969FB2C73066900C7812D /* viewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewModel.swift; sourceTree = "<group>"; };
 		E20969FD2C7306E100C7812D /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		E24A578C2C91FCA70092D71E /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		E258A3CC2C864450003A5DB0 /* GeminiAPIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeminiAPIKey.swift; sourceTree = "<group>"; };
 		E27500DD2C8C2BF900C4A036 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		E2AF4E752C85FF15000CCB3A /* GenerativeAI-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GenerativeAI-Info.plist"; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				E258A3CC2C864450003A5DB0 /* GeminiAPIKey.swift */,
 				E2023E4F2C8B7F87007D95FF /* LandingView.swift */,
 				E27500DD2C8C2BF900C4A036 /* UserProfile.swift */,
+				E24A578C2C91FCA70092D71E /* Library.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 				E2AF4E782C85FF43000CCB3A /* GenerateStory.swift in Sources */,
 				E20969C42C72FFFE00C7812D /* TailCastApp.swift in Sources */,
 				E258A3CD2C864450003A5DB0 /* GeminiAPIKey.swift in Sources */,
+				E24A578D2C91FCA70092D71E /* Library.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
