@@ -192,44 +192,177 @@ struct Home: View {
                             
                             Divider()
                             Spacer()
-                            HStack{
-                                Button {
-                                    //go some where
-                                } label: {
+                                .frame(height: 35.0)
+                            VStack{
+                                HStack{
                                     VStack {
-                                        
-                                        let book = model.bookList[0]
-                                        
-                                        
-                                        if let image = bookCover0{
-                                            Image(uiImage: image)
-                                                .resizable()
-                                                .frame(width: 157, height: 207)
-                                                .cornerRadius(7)
-                                            
-                                                .shadow(color: .black, radius: 0, x: 5, y: 5)
-                                            
-                                            Text(book.Name)
-                                                .padding(.top, 5.0)
-                                            
-                                        }else{
-                                            ProgressView()
-                                                .frame(width: 157, height: 207)
-                                                .cornerRadius(7)
-                                                .onAppear{
-                                                    book.loadBookCover{img in
-                                                        self.bookCover0 = img
-                                                        
-                                                    }
+                                        Button {
+                                            //go some where
+                                        } label: {
+                                            VStack(alignment:.leading) {
+                                                let book = model.bookList[0]
+                                                if let image = bookCover0{
+                                                    Image(uiImage: image)
+                                                        .resizable()
+                                                        .frame(width: 157, height: 207)
+                                                        .cornerRadius(7)
+                                                    
+                                                        .shadow(color: .black, radius: 0, x: 5, y: 5)
+                                                    
+                                                    Text(book.Name)
+                                                        .frame(width: 160)
+                                                        .lineLimit(nil)
+                                                        .font(.headline)
+                                                        .foregroundColor(Color.black)
+                                                        .padding(.top, 5.0)
+                                                    Text(book.Author)
+                                                        .frame(width: 160)
+                                                        .lineLimit(nil)
+                                                        .font(.footnote)
+                                                        .foregroundColor(Color.black)
+                                                    
+                                                    
+                                                    
+                                                }else{
+                                                    ProgressView()
+                                                        .frame(width: 157, height: 207)
+                                                        .cornerRadius(7)
+                                                        .onAppear{
+                                                            book.loadBookCover{img in
+                                                                self.bookCover0 = img
+                                                            }
+                                                        }
+                                                    Text(book.Name)
+                                                        .frame(width: 160)
+                                                        .lineLimit(nil)
+                                                        .font(.headline)
+                                                        .foregroundColor(Color.black)
+                                                        .padding(.top, 5.0)
+                                                    Text(book.Author)
+                                                        .frame(width: 160)
+                                                        .lineLimit(nil)
+                                                        .font(.footnote)
+                                                        .foregroundColor(Color.black)
                                                 }
-                                            Text(book.Name)
-                                        }
-                                    }
+                                            }
+                                        }.padding()
+                                    }.frame(width:160, height: 215)
+                                        
+                                    Spacer()
+                                    VStack {
+                                        Button {
+                                            //go some where
+                                        } label: {
+                                            VStack(alignment:.leading) {
+                                                let book = model.bookList[1]
+                                                if let image = bookCover1{
+                                                    Image(uiImage: image)
+                                                        .resizable()
+                                                        .frame(width: 157, height: 207)
+                                                        .cornerRadius(7)
+                                                    
+                                                        .shadow(color: .black, radius: 0, x: 5, y: 5)
+                                                    
+                                                    Text(book.Name)
+                                                        .frame(width: 160)
+                                                        .lineLimit(nil)
+                                                        .font(.headline)
+                                                        .foregroundColor(Color.black)
+                                                        .padding(.top, 5.0)
+                                                    Text(book.Author)
+                                                        .frame(width: 160)
+                                                        .lineLimit(nil)
+                                                        .font(.footnote)
+                                                        .foregroundColor(Color.black)
+                                                    
+                                                    
+                                                }else{
+                                                    ProgressView()
+                                                        .frame(width: 157, height: 207)
+                                                        .cornerRadius(7)
+                                                        .onAppear{
+                                                            book.loadBookCover{img in
+                                                                self.bookCover1 = img
+                                                            }
+                                                        }
+                                                    Text(book.Name)
+                                                        .frame(width: 160)
+                                                        .lineLimit(nil)
+                                                        .font(.headline)
+                                                        .foregroundColor(Color.black)
+                                                        .padding(.top, 5.0)
+                                                    Text(book.Author)
+                                                        .frame(width: 160)
+                                                        .lineLimit(nil)
+                                                        .font(.footnote)
+                                                        .foregroundColor(Color.black)
+                                                }
+                                            }
+                                        }.padding()
+                                    }.frame(width:160, height: 215)
+                                        .offset(y:25)
                                     
-                                }.padding()
-                                
-                            }
-                            
+                                }
+                                Spacer()
+                                    .frame(height: 65.0)
+                                HStack{
+                                    VStack {
+                                        Button {
+                                            //go some where
+                                        } label: {
+                                            VStack(alignment:.leading) {
+                                                let book = model.bookList[2]
+                                                if let image = bookCover2{
+                                                    Image(uiImage: image)
+                                                        .resizable()
+                                                        .frame(width: 157, height: 207)
+                                                        .cornerRadius(7)
+                                                    
+                                                        .shadow(color: .black, radius: 0, x: 5, y: 5)
+                                                    
+                                                    Text(book.Name)
+                                                        .frame(width: 160)
+                                                        .lineLimit(nil)
+                                                        .font(.headline)
+                                                        .foregroundColor(Color.black)
+                                                        .padding(.top, 5.0)
+                                                    Text(book.Author)
+                                                        .frame(width: 160)
+                                                        .lineLimit(nil)
+                                                        .font(.footnote)
+                                                        .foregroundColor(Color.black)
+                                                    
+                                                    
+                                                }else{
+                                                    ProgressView()
+                                                        .frame(width: 157, height: 207)
+                                                        .cornerRadius(7)
+                                                        .onAppear{
+                                                            book.loadBookCover{img in
+                                                                self.bookCover2 = img
+                                                            }
+                                                        }
+                                                    Text(book.Name)
+                                                        .frame(width: 160)
+                                                        .lineLimit(nil)
+                                                        .font(.headline)
+                                                        .foregroundColor(Color.black)
+                                                        .padding(.top, 5.0)
+                                                    Text(book.Author)
+                                                        .frame(width: 160)
+                                                        .lineLimit(nil)
+                                                        .font(.footnote)
+                                                        .foregroundColor(Color.black)
+                                                }
+                                            }
+                                        }.padding()
+                                    }.frame(width:160, height: 215)
+                                        
+                                    Spacer()
+                                    
+                                    
+                                }
+                            }.padding()
                             
                         }
                         
@@ -296,9 +429,9 @@ struct Home: View {
 
 struct BookCard: View {
     
-        var bookTitle: String
-        var author: String
-        var bookCover: UIImage
+    var bookTitle: String
+    var author: String
+    var bookCover: UIImage
     
     var body: some View {
         

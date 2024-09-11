@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct tabView: View {
-    @State var selectedView = 2
+    @State var selectedView = 3
     var body: some View {
         TabView(selection: $selectedView){
             Home()
@@ -21,6 +21,11 @@ struct tabView: View {
                     Image(systemName: "book")
                     Text("Generate Story")
                 }.tag(1)
+            GenerateStory()
+                .tabItem {
+                    Image(systemName: "books.vertical")
+                    Text("Library")
+                }.tag(2)
         }
     }
 }
