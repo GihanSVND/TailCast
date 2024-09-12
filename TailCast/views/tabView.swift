@@ -21,7 +21,7 @@ struct tabView: View {
                     Image(systemName: "book")
                     Text("Generate Story")
                 }.tag(1)
-            GenerateStory()
+            Library()
                 .tabItem {
                     Image(systemName: "books.vertical")
                     Text("Library")
