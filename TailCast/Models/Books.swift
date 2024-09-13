@@ -22,6 +22,7 @@ class Books: Identifiable{
         self.Author = Author
         self.BookLink = BookLink
     }
+    
     func loadBookCover(completion: @escaping (UIImage?) -> Void) {
         
         let storageReference = Storage.storage().reference(withPath: BookLink)
@@ -31,6 +32,26 @@ class Books: Identifiable{
             } else {
                 print("Error loading image: \(String(describing: error))")
                 completion(nil)
+            }
+        }
+    }
+    
+    func downloadBookPDF(completion: @escaping (URL?) -> Void) {
+        let storageReference = Storage.storage().reference(withPath: BookLink)
+
+        // Create a local URL for the PDF file in the app's Documents directory
+        let fileManager = FileManager.default
+        let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let localURL = documentDirectory.appendingPathComponent("\(UUID().uuidString).pdf")
+
+        // Download the PDF file to the local URL
+        storageReference.write(toFile: localURL) { url, error in
+            if let error = error {
+                print("Error downloading PDF: \(error.localizedDescription)")
+                completion(nil)
+            } else {
+                print("PDF downloaded successfully to: \(localURL)")
+                completion(localURL)
             }
         }
     }
