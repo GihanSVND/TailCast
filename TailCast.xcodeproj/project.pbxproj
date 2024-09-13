@@ -19,7 +19,6 @@
 		E20969FC2C73066900C7812D /* viewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20969FB2C73066900C7812D /* viewModel.swift */; };
 		E20969FE2C7306E100C7812D /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20969FD2C7306E100C7812D /* Home.swift */; };
 		E210A7152C88D61800CB1C7C /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = E210A7142C88D61800CB1C7C /* GoogleGenerativeAI */; };
-		E2388D652C943C3F0080D163 /* Book1.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E2388D642C943C3F0080D163 /* Book1.pdf */; };
 		E248A4132C92EA6E00DC5E6F /* PDFViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E248A4122C92EA6E00DC5E6F /* PDFViewer.swift */; };
 		E24A578D2C91FCA70092D71E /* Library.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24A578C2C91FCA70092D71E /* Library.swift */; };
 		E258A3CD2C864450003A5DB0 /* GeminiAPIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E258A3CC2C864450003A5DB0 /* GeminiAPIKey.swift */; };
@@ -73,7 +72,6 @@
 		E20969F12C7304C700C7812D /* Authors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authors.swift; sourceTree = "<group>"; };
 		E20969FB2C73066900C7812D /* viewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewModel.swift; sourceTree = "<group>"; };
 		E20969FD2C7306E100C7812D /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
-		E2388D642C943C3F0080D163 /* Book1.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Book1.pdf; sourceTree = "<group>"; };
 		E248A4122C92EA6E00DC5E6F /* PDFViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFViewer.swift; sourceTree = "<group>"; };
 		E24A578C2C91FCA70092D71E /* Library.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Library.swift; sourceTree = "<group>"; };
 		E258A3CC2C864450003A5DB0 /* GeminiAPIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeminiAPIKey.swift; sourceTree = "<group>"; };
@@ -202,7 +200,6 @@
 		E20969F42C73053900C7812D /* views */ = {
 			isa = PBXGroup;
 			children = (
-				E2388D642C943C3F0080D163 /* Book1.pdf */,
 				E2BBCD4E2C834FAC00B76E15 /* AuthView.swift */,
 				E20969C52C72FFFE00C7812D /* ContentView.swift */,
 				E20969FD2C7306E100C7812D /* Home.swift */,
@@ -340,7 +337,6 @@
 				E20969C82C72FFFF00C7812D /* Assets.xcassets in Resources */,
 				E2AF4E762C85FF15000CCB3A /* GenerativeAI-Info.plist in Resources */,
 				E2C1A5F92C83839800DBCC23 /* GoogleService-Info.plist in Resources */,
-				E2388D652C943C3F0080D163 /* Book1.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

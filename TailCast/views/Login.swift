@@ -24,14 +24,10 @@ struct Login: View {
                 .ignoresSafeArea()
             
             VStack(spacing: 300){
-                Image("CLAWS")
-                    .resizable()
-                    .frame(width: 120.0, height: 120.0)
-                    .offset(y: 25)
                 Image("loging_back")
                     .resizable()
-                    .frame(width: 350, height: 350)
-                    .offset(y: 135)
+                    .frame(width: 280, height: 280)
+                    .offset(x:65,y: 345)
                     .ignoresSafeArea()
                     
             }
@@ -43,47 +39,66 @@ struct Login: View {
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .padding(0.0)
+                    .offset(y:-40)
                     
-                    
-                HStack{
-                    Image(systemName: "person.fill")
-                    
-                    TextField("", text: $email)
+                
+                ZStack{
+                    RoundedRectangle(cornerRadius: 7)
+                        .frame(height: 60)
                         .foregroundColor(.black)
-                        .textFieldStyle(.plain)
-                        .placeholder(when: email.isEmpty){
-                            Text("Email")
-                                .foregroundColor(.black)
-                                .bold()
-                        }
-                    Spacer()
+                        .offset(x:5,y:5)
                     
+                    HStack{
+                        Image(systemName: "person.fill")
+                        
+                        TextField("", text: $email)
+                            .foregroundColor(.black)
+                            .textFieldStyle(.plain)
+                            .background(Color.white)
+                            .placeholder(when: email.isEmpty){
+                                Text("Email")
+                                    .foregroundColor(.black)
+                                    .bold()
+                            }
+                        Spacer()
+                    }.padding()
+                        .background(Color.white)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 7)
+                            .stroke(Color.black,lineWidth: 3)
+                    }
+                        
                     
-                }.padding()
-                    .overlay(RoundedRectangle(cornerRadius: 16)
-                        .stroke(lineWidth: 2))
-                    
-                
-                
-                
-                HStack{
-                    Image(systemName: "lock.fill")
-                    
-                    SecureField("", text: $password)
+                }
+                ZStack{
+                    RoundedRectangle(cornerRadius: 7)
+                        .frame(height: 60)
                         .foregroundColor(.black)
-                        .textFieldStyle(.plain)
-                        .placeholder(when: password.isEmpty){
-                            Text("Password")
-                                .foregroundColor(.black)
-                                .bold()
-                        }
-                    Spacer()
+                        .offset(x:5,y:5)
                     
+                    HStack{
+                        Image(systemName: "lock.fill")
+                        
+                        TextField("", text: $password)
+                            .foregroundColor(.black)
+                            .textFieldStyle(.plain)
+                            .background(Color.white)
+                            .placeholder(when: password.isEmpty){
+                                Text("Password")
+                                    .foregroundColor(.black)
+                                    .bold()
+                            }
+                        Spacer()
+                    }.padding()
+                        .background(Color.white)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 7)
+                            .stroke(Color.black,lineWidth: 3)
+                    }
+                        
                     
+                }
                 
-                }.padding()
-                    .overlay(RoundedRectangle(cornerRadius: 16)
-                        .stroke(lineWidth: 2))
                 
                 Button{
                     
@@ -106,12 +121,23 @@ struct Login: View {
                         
                     }
                 } label: {
-                    Text("Login")
-                        .padding()
-                        .padding(.horizontal, 125.0)
-                        .background(Color.black)
-                        .foregroundColor(.white)
-                        .cornerRadius(16)
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 7)
+                            .frame(height: 60)
+                            .foregroundColor(.black)
+                            .offset(x:7,y:5)
+                        
+                        Text("Login")
+                            .foregroundColor(.white)
+                            .padding()
+                            .frame(maxWidth: .infinity)
+                            .background(Color.black)
+                            .cornerRadius(7)
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 7)
+                                    .stroke(Color.white,lineWidth: 3)
+                            }
+                    }
                 }.offset(y:40)
                     .alert(isPresented: $showAlert) {
                         Alert(title: Text("Login Error"), message: Text("Invalid Username or Password"), dismissButton: .default(Text("OK")))
@@ -131,6 +157,7 @@ struct Login: View {
                 
             }
             .padding()
+            .offset(y:-70)
         }
         
         
@@ -161,5 +188,3 @@ extension String{
     }
     
 }
-
-
