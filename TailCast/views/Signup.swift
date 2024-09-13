@@ -24,14 +24,11 @@ struct Signup: View {
                     .ignoresSafeArea()
                 
                 VStack(spacing: 300){
-                    Image("CLAWS")
-                        .resizable()
-                        .frame(width: 120.0, height: 120.0)
-                        .offset(y: 25)
+                    
                     Image("sign_back")
                         .resizable()
-                        .frame(width: 350, height: 350)
-                        .offset(y: 164)
+                        .frame(width: 200, height: 200)
+                        .offset(y: 315)
                         .ignoresSafeArea()
                     
                 }
@@ -42,69 +39,105 @@ struct Signup: View {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .padding(0.0)
-                        .offset(y: -15)
+                        .offset(y: -65)
                     
-                    
-                    HStack{
-                        Image(systemName: "person.fill")
-                        
-                        TextField("", text: $email)
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 7)
+                            .frame(height: 60)
                             .foregroundColor(.black)
-                            .textFieldStyle(.plain)
-                            .placeholder(when: email.isEmpty){
-                                Text("Email")
-                                    .foregroundColor(.black)
-                                    .bold()
-                            }
-                        Spacer()
+                            .offset(x:5,y:5)
                         
-                        
-                    }.padding()
-                        .overlay(RoundedRectangle(cornerRadius: 16)
-                            .stroke(lineWidth: 2))
-                    
-                    
-                    HStack{
-                        Image(systemName: "lock.fill")
-                        
-                        SecureField("", text: $password)
-                            .foregroundColor(.black)
-                            .textFieldStyle(.plain)
-                            .placeholder(when: password.isEmpty){
-                                Text("Password")
-                                    .foregroundColor(.black)
-                                    .bold()
-                            }
-                        Spacer()
-                        if(password.count != 0){
-                            Text(password.isValidPssword(password) ? "Strong" : "Weak")
-                                .fontWeight(.bold)
-                                .foregroundColor(password.isValidPssword(password) ? .green : .red)
+                        HStack{
+                            Image(systemName: "person.fill")
+                            
+                            TextField("", text: $email)
+                                .foregroundColor(.black)
+                                .textFieldStyle(.plain)
+                                .placeholder(when: email.isEmpty){
+                                    Text("Email")
+                                        .foregroundColor(.black)
+                                        
+                                }
+                                .background(Color.white)
+                                
+                            Spacer()
+                        }.padding()
+                            .background(Color.white)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 7)
+                                .stroke(Color.black,lineWidth: 3)
                         }
+                            
                         
-                        
-                    }.padding()
-                        .overlay(RoundedRectangle(cornerRadius: 16)
-                            .stroke(lineWidth: 2))
+                    }
                     
-                    HStack{
-                        Image(systemName: "lock.fill")
-                        
-                        SecureField("", text: $checkPassword)
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 7)
+                            .frame(height: 60)
                             .foregroundColor(.black)
-                            .textFieldStyle(.plain)
-                            .placeholder(when: checkPassword.isEmpty){
-                                Text("Confirm Password")
-                                    .foregroundColor(.black)
-                                    .bold()
+                            .offset(x:5,y:5)
+                        
+                        HStack{
+                            Image(systemName: "lock.fill")
+                            
+                            SecureField("", text: $password)
+                                .foregroundColor(.black)
+                                .textFieldStyle(.plain)
+                                .placeholder(when: password.isEmpty){
+                                    Text("Password")
+                                        .foregroundColor(.black)
+                                        
+                                }
+                                .background(Color.white)
+                                
+                            Spacer()
+                            if(password.count != 0){
+                                Text(password.isValidPssword(password) ? "Strong" : "Weak")
+                                    .fontWeight(.bold)
+                                    .foregroundColor(password.isValidPssword(password) ? .green : .red)
                             }
-                        Spacer()
-                        Text(password != checkPassword && checkPassword != "" ? "Incorrect" : "")
-                            .fontWeight(.bold)
-                            .foregroundColor(password != checkPassword && checkPassword != "" ? .red : .green)
-                    }.padding()
-                    .overlay(RoundedRectangle(cornerRadius: 16)
-                    .stroke(lineWidth: 2))
+                        }.padding()
+                            .background(Color.white)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 7)
+                                .stroke(Color.black,lineWidth: 3)
+                        }
+                    }
+                    
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 7)
+                            .frame(height: 60)
+                            .foregroundColor(.black)
+                            .offset(x:5,y:5)
+                        
+                        HStack{
+                            Image(systemName: "lock.fill")
+                            
+                            SecureField("", text: $checkPassword)
+                                .foregroundColor(.black)
+                                .textFieldStyle(.plain)
+                                .placeholder(when: checkPassword.isEmpty){
+                                    Text("Confirm Password")
+                                        .foregroundColor(.black)
+                                        
+                                }
+                                .background(Color.white)
+                                
+                            Spacer()
+                            Text(password != checkPassword && checkPassword != "" ? "Incorrect" : "")
+                                .fontWeight(.bold)
+                                .foregroundColor(password != checkPassword && checkPassword != "" ? .red : .green)
+                            
+                        }.padding()
+                            .background(Color.white)
+                        .overlay {
+                            RoundedRectangle(cornerRadius: 7)
+                                .stroke(Color.black,lineWidth: 3)
+                        }
+                    }
+                    
+                    
+                    
                     Button{
                         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                             if let error = error{
@@ -122,18 +155,28 @@ struct Signup: View {
                             }
                         }
                     } label: {
-                        Text("Register")
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 7)
+                                .frame(height: 60)
+                                .foregroundColor(.black)
+                                .offset(x:7,y:5)
                             
-                            .padding()
-                            .padding(.horizontal, 125.0)
-                            .background(Color.black)
-                            .foregroundColor(.white)
-                            .cornerRadius(16)
+                            Text("Register")
+                                .foregroundColor(.white)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.black)
+                                .cornerRadius(7)
+                                .overlay {
+                                    RoundedRectangle(cornerRadius: 7)
+                                        .stroke(Color.white,lineWidth: 3)
+                                }
+                        }
                     }.offset(y:40)
                     
                     
                     Button{
-                        withAnimation(Animation.bouncy){
+                        withAnimation(Animation.easeOut){
                             self.currentView = "login"
                         }
                     } label: {
@@ -145,7 +188,33 @@ struct Signup: View {
                     
                 }
                 .padding()
+                .offset(y:-55)
             }
         }
     }
+}
+
+extension String{
+    
+    func isValidEmail() -> Bool{
+        
+        let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", options: .caseInsensitive)
+
+        return regex.firstMatch(in: self, range: NSRange(location: 0, length: count)) != nil
+        
+    }
+    
+}
+
+extension String{
+    
+    func isValidPssword(_ password: String) -> Bool{
+        
+        let passwordRegex = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[$@$#!%*?&])(?=.*[A-Z]).{6,}$")
+        
+        return passwordRegex.evaluate(with: password)
+
+        
+    }
+    
 }
