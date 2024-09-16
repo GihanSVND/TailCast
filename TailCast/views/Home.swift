@@ -245,7 +245,7 @@ struct Home: View {
                                                         .foregroundColor(Color.black)
                                                 }
                                             }
-                                        }.padding()
+                                        }
                                     }.frame(width:160, height: 215)
                                         
                                     Spacer()
