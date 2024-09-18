@@ -200,15 +200,15 @@ struct Home: View {
                                 ForEach(model.bookList.indices, id: \.self){index in
                                     
                                     VStack {
-                                        
+                                        @State var bookCover: UIImage?
                                         Button {
                                             //go some where
                                         } label: {
-                                            @State var bookCover: UIImage?
                                             VStack(alignment:.leading, spacing: 35.0) {
                                                 
                                                 let book = model.bookList[index]
                                                 if let image = bookCover{
+                                                    
                                                     Image(uiImage: image)
                                                         .resizable()
                                                         .frame(width: 157, height: 207)
