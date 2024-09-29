@@ -217,28 +217,65 @@ struct Home: View {
                                                         .cornerRadius(7)
                                                         .shadow(color: .black, radius: 0, x: 5, y: 5)
                                                     Spacer()
+                                                        .frame(width: 40.0)
                                                     VStack{
                                                         
                                                         Text(book.Name)
+                                                            .multilineTextAlignment(.leading)
                                                             .frame(width: 160)
                                                             .lineLimit(nil)
-                                                            .font(.headline)
+                                                            .font(.title)
+                                                            .fontWeight(.bold)
                                                             .foregroundColor(Color.black)
                                                             .padding(.top, 5.0)
                                                         
                                                         Text(book.Author)
+                                                            .multilineTextAlignment(.leading)
                                                             .frame(width: 160)
                                                             .lineLimit(nil)
                                                             .font(.footnote)
                                                             .foregroundColor(Color.black)
+                                                        Spacer()
                                                         if let pdfURL = pdfURLs.indices.contains(index) ? pdfURLs[index] : nil {
                                                             NavigationLink(destination: PDFViewerView(url: pdfURL)) {
-                                                                Text("Open PDF")
-                                                                    .font(.headline)
-                                                                    .foregroundColor(.blue)
+                                                                ZStack{
+                                                                    RoundedRectangle(cornerRadius: 7)
+                                                                        .frame(height: 60)
+                                                                        .foregroundColor(.black)
+                                                                        .offset(x:7,y:5)
+                                                                    
+                                                                    Text("Read")
+                                                                        .foregroundColor(.white)
+                                                                        .padding()
+                                                                        .frame(maxWidth: .infinity)
+                                                                        .background(Color.black)
+                                                                        .cornerRadius(7)
+                                                                        .overlay {
+                                                                            RoundedRectangle(cornerRadius: 7)
+                                                                                .stroke(Color.white,lineWidth: 3)
+                                                                        }
+                                                                }
                                                             }
                                                         }else {
-                                                            Text("Loading PDF")
+                                                            ZStack{
+                                                                RoundedRectangle(cornerRadius: 7)
+                                                                    .frame(height: 60)
+                                                                    .foregroundColor(.black)
+                                                                    .offset(x:7,y:5)
+                                                                
+                                                                Text("Read")
+                                                                    .foregroundColor(.white)
+                                                                    .padding()
+                                                                    .frame(maxWidth: .infinity)
+                                                                    .background(Color.gray)
+                                                                    .cornerRadius(7)
+                                                                    .overlay {
+                                                                        RoundedRectangle(cornerRadius: 7)
+                                                                            .stroke(Color.white,lineWidth: 3)
+                                                                    }
+                                                            }
+                                                            
+                                                                
                                                                 .onAppear {
                                                                     book.downloadBookPDF { url in
                                                                         if let url = url {
@@ -268,27 +305,62 @@ struct Home: View {
                                                             }
                                                         }
                                                     Spacer()
+                                                        .frame(width: 40.0)
                                                     VStack{
                                                         Text(book.Name)
+                                                            .multilineTextAlignment(.leading)
                                                             .frame(width: 160)
                                                             .lineLimit(nil)
-                                                            .font(.headline)
+                                                            .font(.title)
+                                                            .fontWeight(.bold)
                                                             .foregroundColor(Color.black)
                                                             .padding(.top, 5.0)
                                                         
                                                         Text(book.Author)
+                                                            .multilineTextAlignment(.leading)
                                                             .frame(width: 160)
                                                             .lineLimit(nil)
                                                             .font(.footnote)
                                                             .foregroundColor(Color.black)
+                                                        Spacer()
                                                         if let pdfURL = pdfURLs.indices.contains(index) ? pdfURLs[index] : nil {
                                                             NavigationLink(destination: PDFViewerView(url: pdfURL)) {
-                                                                Text("Open PDF")
-                                                                    .font(.headline)
-                                                                    .foregroundColor(.blue)
+                                                                ZStack{
+                                                                    RoundedRectangle(cornerRadius: 7)
+                                                                        .frame(height: 60)
+                                                                        .foregroundColor(.black)
+                                                                        .offset(x:7,y:5)
+                                                                    
+                                                                    Text("Read")
+                                                                        .foregroundColor(.white)
+                                                                        .padding()
+                                                                        .frame(maxWidth: .infinity)
+                                                                        .background(Color.black)
+                                                                        .cornerRadius(7)
+                                                                        .overlay {
+                                                                            RoundedRectangle(cornerRadius: 7)
+                                                                                .stroke(Color.white,lineWidth: 3)
+                                                                        }
+                                                                }
                                                             }
                                                         }else {
-                                                            Text("Loading PDF")
+                                                            ZStack{
+                                                                RoundedRectangle(cornerRadius: 7)
+                                                                    .frame(height: 60)
+                                                                    .foregroundColor(.black)
+                                                                    .offset(x:7,y:5)
+                                                                
+                                                                Text("Read")
+                                                                    .foregroundColor(.white)
+                                                                    .padding()
+                                                                    .frame(maxWidth: .infinity)
+                                                                    .background(Color.gray)
+                                                                    .cornerRadius(7)
+                                                                    .overlay {
+                                                                        RoundedRectangle(cornerRadius: 7)
+                                                                            .stroke(Color.white,lineWidth: 3)
+                                                                    }
+                                                            }
                                                                 .onAppear {
                                                                     book.downloadBookPDF { url in
                                                                         if let url = url {
