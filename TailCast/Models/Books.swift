@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import FirebaseStorage
+import FirebaseFirestore
 
 class Books: Identifiable{
     
@@ -40,6 +41,15 @@ class Books: Identifiable{
             }
         }
     }
+    
+    func updateFavouriteStatus(isFavourite: Bool, completion: @escaping (Error?) -> Void) {
+            let db = Firestore.firestore()
+            let newStatus = isFavourite ? "yes" : "no"
+            
+            db.collection("Books").document(self.id).updateData(["Favourite": newStatus]) { error in
+                completion(error)
+            }
+        }
     
     func downloadBookPDF(completion: @escaping (URL?) -> Void) {
         let storageReference = Storage.storage().reference(withPath: BookLink)
