@@ -26,6 +26,7 @@ struct Home: View {
     @State private var pdfURLs: [URL?] = [] // Array to store PDF URLs
     @State private var showPDF = false
     @State private var selectedPDFUrl: URL?
+    @State private var favourites: [Bool] = []
     
     
     //let items = ["Apple", "Banana", "Orange"]
@@ -217,7 +218,7 @@ struct Home: View {
                                                         .cornerRadius(7)
                                                         .shadow(color: .black, radius: 0, x: 5, y: 5)
                                                     Spacer()
-                                                        .frame(width: 40.0)
+                                                        .frame(width: 30.0)
                                                     VStack{
                                                         
                                                         Text(book.Name)
@@ -275,18 +276,19 @@ struct Home: View {
                                                                     }
                                                             }
                                                             
-                                                                
-                                                                .onAppear {
-                                                                    book.downloadBookPDF { url in
-                                                                        if let url = url {
-                                                                            if pdfURLs.indices.contains(index) {
-                                                                                pdfURLs[index] = url
-                                                                            } else {
-                                                                                pdfURLs.append(url)
-                                                                            }
+                                                            
+                                                            .onAppear {
+                                                                book.downloadBookPDF { url in
+                                                                    if let url = url {
+                                                                        if pdfURLs.indices.contains(index) {
+                                                                            pdfURLs[index] = url
+                                                                        } else {
+                                                                            pdfURLs.append(url)
                                                                         }
                                                                     }
                                                                 }
+                                                            }
+                                                            
                                                         }
                                                     }
                                                 }.padding()
@@ -305,7 +307,7 @@ struct Home: View {
                                                             }
                                                         }
                                                     Spacer()
-                                                        .frame(width: 40.0)
+                                                        .frame(width: 30.0)
                                                     VStack{
                                                         Text(book.Name)
                                                             .multilineTextAlignment(.leading)
@@ -361,18 +363,20 @@ struct Home: View {
                                                                             .stroke(Color.white,lineWidth: 3)
                                                                     }
                                                             }
-                                                                .onAppear {
-                                                                    book.downloadBookPDF { url in
-                                                                        if let url = url {
-                                                                            if pdfURLs.indices.contains(index) {
-                                                                                pdfURLs[index] = url
-                                                                            } else {
-                                                                                pdfURLs.append(url)
-                                                                            }
+                                                            .onAppear {
+                                                                book.downloadBookPDF { url in
+                                                                    if let url = url {
+                                                                        if pdfURLs.indices.contains(index) {
+                                                                            pdfURLs[index] = url
+                                                                        } else {
+                                                                            pdfURLs.append(url)
                                                                         }
                                                                     }
                                                                 }
+                                                            }
+                                                            
                                                         }
+                                                        
                                                     }
                                                     
                                                 }.padding()
@@ -387,6 +391,7 @@ struct Home: View {
                                     pdfURLs = Array(repeating: nil, count: model.bookList.count)
                                     // Initialize the array with the same count as bookList
                                     bookCovers = Array(repeating: nil, count: model.bookList.count)
+                                    favourites = Array(repeating: false, count: model.bookList.count)
                                 }
                                 
                             }.padding()
@@ -455,6 +460,7 @@ struct Home: View {
         model.getBookData()
         
     }
+    
 }
 
 struct BookCard: View {

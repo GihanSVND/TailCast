@@ -18,8 +18,10 @@ struct Library: View {
     @State var pdfUrl: URL?
     @AppStorage("uId") var userID: String = ""
     let index: Int = 1
+    @State private var pdfURLs: [URL?] = [] // Array to store PDF URLs
     @State private var showPDF = false
-    @State private var pdfURL: URL?
+    @State private var selectedPDFUrl: URL?
+    @State private var bookCovers: [UIImage?] = []
     
     var body: some View {
         NavigationStack {
@@ -32,76 +34,202 @@ struct Library: View {
                     Spacer()
                         .frame(height: 40.0)
                     
-                    HStack {
-                        if model.bookList.indices.contains(index) {
-                            VStack {
-                                let book = model.bookList[0]
+                    VStack{
+                        
+                        ForEach(model.bookList.indices, id: \.self) { index in
+                            let book = model.bookList[index]
+                            if book.Favourite == "yes"{
+                                VStack {
                                 
-                                if let pdfURL = pdfURL {
-                                    NavigationLink(destination: PDFViewerView(url: pdfURL)){
-                                        Text("Edit User Profile")
-                                    }
-                                }else{
-                                    Text("Loading pdf")
-                                        .onAppear {
-                                            book.downloadBookPDF { url in
-                                                if let url = url {
-                                                    self.pdfURL = url
-                                                }
-                                            }
-                                        }
-                                }
                                 Button {
-                                    //
-                                    
+                                    // Handle navigation or action
                                 } label: {
-                                    VStack(alignment: .leading) {
-                                        let book = model.bookList[index]
-                                        if let image = bookCover2 {
-                                            // Displaying only the book cover as an image
+                                    
+                                    // Check if the cover image is already loaded
+                                    if let image = bookCovers.indices.contains(index) ? bookCovers[index] : nil {
+                                        
+                                        HStack() {
                                             Image(uiImage: image)
                                                 .resizable()
                                                 .frame(width: 157, height: 207)
                                                 .cornerRadius(7)
                                                 .shadow(color: .black, radius: 0, x: 5, y: 5)
-                                            
-                                            Text(book.Name)
-                                                .frame(width: 160)
-                                                .lineLimit(nil)
-                                                .font(.headline)
-                                                .foregroundColor(Color.black)
-                                                .padding(.top, 5.0)
-                                            Text(book.Author)
-                                                .frame(width: 160)
-                                                .lineLimit(nil)
-                                                .font(.footnote)
-                                                .foregroundColor(Color.black)
-                                        } else {
+                                            Spacer()
+                                                .frame(width: 30.0)
+                                            VStack{
+                                                
+                                                Text(book.Name)
+                                                    .multilineTextAlignment(.leading)
+                                                    .frame(width: 160)
+                                                    .lineLimit(nil)
+                                                    .font(.title)
+                                                    .fontWeight(.bold)
+                                                    .foregroundColor(Color.black)
+                                                    .padding(.top, 5.0)
+                                                
+                                                Text(book.Author)
+                                                    .multilineTextAlignment(.leading)
+                                                    .frame(width: 160)
+                                                    .lineLimit(nil)
+                                                    .font(.footnote)
+                                                    .foregroundColor(Color.black)
+                                                Spacer()
+                                                if let pdfURL = pdfURLs.indices.contains(index) ? pdfURLs[index] : nil {
+                                                    NavigationLink(destination: PDFViewerView(url: pdfURL)) {
+                                                        ZStack{
+                                                            RoundedRectangle(cornerRadius: 7)
+                                                                .frame(height: 60)
+                                                                .foregroundColor(.black)
+                                                                .offset(x:7,y:5)
+                                                            
+                                                            Text("Read")
+                                                                .foregroundColor(.white)
+                                                                .padding()
+                                                                .frame(maxWidth: .infinity)
+                                                                .background(Color.black)
+                                                                .cornerRadius(7)
+                                                                .overlay {
+                                                                    RoundedRectangle(cornerRadius: 7)
+                                                                        .stroke(Color.white,lineWidth: 3)
+                                                                }
+                                                        }
+                                                    }
+                                                }else {
+                                                    ZStack{
+                                                        RoundedRectangle(cornerRadius: 7)
+                                                            .frame(height: 60)
+                                                            .foregroundColor(.black)
+                                                            .offset(x:7,y:5)
+                                                        
+                                                        Text("Read")
+                                                            .foregroundColor(.white)
+                                                            .padding()
+                                                            .frame(maxWidth: .infinity)
+                                                            .background(Color.gray)
+                                                            .cornerRadius(7)
+                                                            .overlay {
+                                                                RoundedRectangle(cornerRadius: 7)
+                                                                    .stroke(Color.white,lineWidth: 3)
+                                                            }
+                                                    }
+                                                    
+                                                    
+                                                    .onAppear {
+                                                        book.downloadBookPDF { url in
+                                                            if let url = url {
+                                                                if pdfURLs.indices.contains(index) {
+                                                                    pdfURLs[index] = url
+                                                                } else {
+                                                                    pdfURLs.append(url)
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }.padding()
+                                    } else {
+                                        HStack{
                                             ProgressView()
                                                 .frame(width: 157, height: 207)
                                                 .cornerRadius(7)
                                                 .onAppear {
                                                     book.loadBookCover { img in
-                                                        self.bookCover2 = img
+                                                        if bookCovers.indices.contains(index) {
+                                                            bookCovers[index] = img
+                                                        } else {
+                                                            bookCovers.append(img)
+                                                        }
                                                     }
                                                 }
-                                            Text(book.Name)
-                                                .frame(width: 160)
-                                                .lineLimit(nil)
-                                                .font(.headline)
-                                                .foregroundColor(Color.black)
-                                                .padding(.top, 5.0)
-                                            Text(book.Author)
-                                                .frame(width: 160)
-                                                .lineLimit(nil)
-                                                .font(.footnote)
-                                                .foregroundColor(Color.black)
-                                        }
+                                            Spacer()
+                                                .frame(width: 30.0)
+                                            VStack{
+                                                Text(book.Name)
+                                                    .multilineTextAlignment(.leading)
+                                                    .frame(width: 160)
+                                                    .lineLimit(nil)
+                                                    .font(.title)
+                                                    .fontWeight(.bold)
+                                                    .foregroundColor(Color.black)
+                                                    .padding(.top, 5.0)
+                                                
+                                                Text(book.Author)
+                                                    .multilineTextAlignment(.leading)
+                                                    .frame(width: 160)
+                                                    .lineLimit(nil)
+                                                    .font(.footnote)
+                                                    .foregroundColor(Color.black)
+                                                Spacer()
+                                                if let pdfURL = pdfURLs.indices.contains(index) ? pdfURLs[index] : nil {
+                                                    NavigationLink(destination: PDFViewerView(url: pdfURL)) {
+                                                        ZStack{
+                                                            RoundedRectangle(cornerRadius: 7)
+                                                                .frame(height: 60)
+                                                                .foregroundColor(.black)
+                                                                .offset(x:7,y:5)
+                                                            
+                                                            Text("Read")
+                                                                .foregroundColor(.white)
+                                                                .padding()
+                                                                .frame(maxWidth: .infinity)
+                                                                .background(Color.black)
+                                                                .cornerRadius(7)
+                                                                .overlay {
+                                                                    RoundedRectangle(cornerRadius: 7)
+                                                                        .stroke(Color.white,lineWidth: 3)
+                                                                }
+                                                        }
+                                                    }
+                                                }else {
+                                                    ZStack{
+                                                        RoundedRectangle(cornerRadius: 7)
+                                                            .frame(height: 60)
+                                                            .foregroundColor(.black)
+                                                            .offset(x:7,y:5)
+                                                        
+                                                        Text("Read")
+                                                            .foregroundColor(.white)
+                                                            .padding()
+                                                            .frame(maxWidth: .infinity)
+                                                            .background(Color.gray)
+                                                            .cornerRadius(7)
+                                                            .overlay {
+                                                                RoundedRectangle(cornerRadius: 7)
+                                                                    .stroke(Color.white,lineWidth: 3)
+                                                            }
+                                                    }
+                                                    .onAppear {
+                                                        book.downloadBookPDF { url in
+                                                            if let url = url {
+                                                                if pdfURLs.indices.contains(index) {
+                                                                    pdfURLs[index] = url
+                                                                } else {
+                                                                    pdfURLs.append(url)
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            
+                                        }.padding()
                                     }
-                                }.padding()
-                            }.frame(width: 160, height: 215)
+                                }
+                                
+                                
+                                Divider()
+                            }
                         }
-                    }
+                            
+                            //.frame(width: 160, height: 215)
+                        }.onAppear {
+                            pdfURLs = Array(repeating: nil, count: model.bookList.count)
+                            // Initialize the array with the same count as bookList
+                            bookCovers = Array(repeating: nil, count: model.bookList.count)
+                        }
+                        
+                    }.padding()
                 }
                 .navigationTitle("Library")
                 .padding()

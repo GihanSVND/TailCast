@@ -16,13 +16,15 @@ class Books: Identifiable{
     var Author: String
     var BookLink: String
     var BookCoverPage: String
+    var Favourite: String
     
-    init(id: String, Name: String, Author: String, BookLink: String, BookCoverPage: String) {
+    init(id: String, Name: String, Author: String, BookLink: String, BookCoverPage: String, Favourite: String) {
         self.id = id
         self.Name = Name
         self.Author = Author
         self.BookLink = BookLink
         self.BookCoverPage = BookCoverPage
+        self.Favourite = Favourite
     }
     
     func loadBookCover(completion: @escaping (UIImage?) -> Void) {
