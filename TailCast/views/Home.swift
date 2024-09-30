@@ -26,8 +26,7 @@ struct Home: View {
     @State private var pdfURLs: [URL?] = [] // Array to store PDF URLs
     @State private var showPDF = false
     @State private var selectedPDFUrl: URL?
-    @State private var favourites: [Bool] = []
-    
+    @State private var favouriteStatuses: [Bool] = []
     
     //let items = ["Apple", "Banana", "Orange"]
     
@@ -221,6 +220,37 @@ struct Home: View {
                                                         .frame(width: 30.0)
                                                     VStack{
                                                         
+                                                        
+                                                        // Inside ForEach where the books are displayed
+                                                        Toggle(isOn: Binding(
+                                                            get: { favouriteStatuses.indices.contains(index) ? favouriteStatuses[index] : false },
+                                                            set: { newValue in
+                                                                favouriteStatuses[index] = newValue
+                                                                // Update Firestore with the new value
+                                                                book.updateFavouriteStatus(isFavourite: newValue) { error in
+                                                                    if let error = error {
+                                                                        print("Error updating favourite status: \(error.localizedDescription)")
+                                                                    }
+                                                                }
+                                                            }
+                                                        )) {
+                                                            Text("Favourite")
+                                                        }
+                                                        .onAppear {
+                                                            // Initialize toggle status based on the current favourite value
+                                                            if favouriteStatuses.indices.contains(index) {
+                                                                // Skip initialization if already initialized
+                                                                return
+                                                            }
+                                                            
+                                                            // Set the toggle status based on the "Favourite" field
+                                                            let isFavourite = book.Favourite == "yes"
+                                                            favouriteStatuses.append(isFavourite)
+                                                        }
+                                                        
+                                                        
+                                                        
+                                                        
                                                         Text(book.Name)
                                                             .multilineTextAlignment(.leading)
                                                             .frame(width: 160)
@@ -389,9 +419,8 @@ struct Home: View {
                                     //.frame(width: 160, height: 215)
                                 }.onAppear {
                                     pdfURLs = Array(repeating: nil, count: model.bookList.count)
-                                    // Initialize the array with the same count as bookList
                                     bookCovers = Array(repeating: nil, count: model.bookList.count)
-                                    favourites = Array(repeating: false, count: model.bookList.count)
+                                    favouriteStatuses = Array(repeating: false, count: model.bookList.count) // Initialize to false
                                 }
                                 
                             }.padding()
@@ -458,6 +487,7 @@ struct Home: View {
         model.getAuthorData()
         model.getUserData()
         model.getBookData()
+        
         
     }
     
