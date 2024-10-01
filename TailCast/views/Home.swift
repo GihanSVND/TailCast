@@ -33,6 +33,14 @@ struct Home: View {
     let indexs: Int = 1
     
     @State var selectedView = 0
+    
+    init(){
+        model.getBookData()
+        model.getAuthorData()
+        model.getUserData()
+        
+    }
+    
     var body: some View {
         NavigationStack{
             
@@ -241,16 +249,17 @@ struct Home: View {
                                                             Text("Favourite")
                                                         }
                                                         .onAppear {
-                                                            // Check if the toggle status is already initialized
-                                                            if favouriteStatuses.indices.contains(index) {
-                                                                return // Skip if already initialized
+                                                            // Ensure the toggle is initialized based on Firestore value when the view appears
+                                                            if !favouriteStatuses.indices.contains(index) {
+                                                                let isFavourite = book.Favourite == "yes"
+                                                                favouriteStatuses.append(isFavourite ? "yes" : "no")
+                                                                
                                                             }
                                                             
-                                                            // Set the toggle status based on the "Favourite" field of the book
-                                                            let isFavourite = book.Favourite == "yes"
-                                                            favouriteStatuses.append(isFavourite ? "yes" : "no")
                                                         }
-
+                                                        
+                                                        
+                                                        
                                                         
                                                         
                                                         Text(book.Name)
@@ -341,6 +350,36 @@ struct Home: View {
                                                     Spacer()
                                                         .frame(width: 30.0)
                                                     VStack{
+                                                        
+                                                        Toggle(isOn: Binding(
+                                                            get: {
+                                                                // Check if the index exists in favouriteStatuses and convert the value to a boolean
+                                                                favouriteStatuses.indices.contains(index) ? (favouriteStatuses[index] == "yes") : false
+                                                            },
+                                                            set: { newValue in
+                                                                // Update the favouriteStatuses array based on the toggle's new value
+                                                                favouriteStatuses[index] = newValue ? "yes" : "no"
+                                                                
+                                                                // Update Firestore with the new value
+                                                                book.updateFavouriteStatus(isFavourite: newValue) { error in
+                                                                    if let error = error {
+                                                                        print("Error updating favourite status: \(error.localizedDescription)")
+                                                                    }
+                                                                }
+                                                            }
+                                                        )) {
+                                                            Text("Favourite")
+                                                        }
+                                                        .onAppear {
+                                                            // Ensure the toggle is initialized based on Firestore value when the view appears
+                                                            if !favouriteStatuses.indices.contains(index) {
+                                                                let isFavourite = book.Favourite == "yes"
+                                                                favouriteStatuses.append(isFavourite ? "yes" : "no")
+                                                                
+                                                            }
+                                                            
+                                                        }
+                                                        
                                                         Text(book.Name)
                                                             .multilineTextAlignment(.leading)
                                                             .frame(width: 160)
@@ -422,8 +461,8 @@ struct Home: View {
                                 }.onAppear {
                                     pdfURLs = Array(repeating: nil, count: model.bookList.count)
                                     bookCovers = Array(repeating: nil, count: model.bookList.count)
-                                    favouriteStatuses = Array(repeating: "no", count: model.bookList.count)
-
+                                    
+                                    
                                 }
                                 
                             }.padding()
@@ -486,45 +525,10 @@ struct Home: View {
     }
     
     
-    init(){
-        model.getAuthorData()
-        model.getUserData()
-        model.getBookData()
-        
-        
-    }
+    
     
 }
 
-struct BookCard: View {
-    
-    var bookTitle: String
-    var author: String
-    var bookCover: UIImage
-    var body: some View {
-        
-        VStack {
-            Image(uiImage: bookCover)
-                .resizable()
-                .frame(width:147, height: 207.6)
-                .cornerRadius(17)
-            HStack {
-                Text(bookTitle)
-                    .font(.subheadline)
-                    .fontWeight(.bold)
-                Spacer()
-            }.padding(.leading)
-            HStack {
-                Text(author)
-                    .font(.footnote)
-                Spacer()
-            }.padding(.leading)
-            
-            
-        }
-        
-    }
-}
 
 #Preview {
     Home()

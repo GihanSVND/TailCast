@@ -12,6 +12,7 @@ class ViewModel: ObservableObject{
     @Published var authorsList = [Authors]()
     @Published var usersList = [Users]()
     @Published var bookList = [Books]()
+    @Published private var favouriteStatuses: [String] = []
     
     func getAuthorData(){
         let db = Firestore.firestore()
@@ -57,22 +58,26 @@ class ViewModel: ObservableObject{
     
     func getBookData(){
         let db = Firestore.firestore()
-        
-        db.collection("Books").getDocuments {snapshot , error in
-            if error == nil{
-                
-                if let snapshot = snapshot{
-                    
+
+        db.collection("Books").getDocuments { snapshot , error in
+            if error == nil {
+                if let snapshot = snapshot {
                     DispatchQueue.main.async {
-                        self.bookList = snapshot.documents.map {docs in
-                            return Books(id: docs.documentID,  Name: docs["Name"] as? String ?? "",  Author: docs["Author"] as? String ?? "",  BookLink: docs["BookLink"] as? String ?? "", BookCoverPage: docs["BookCoverPage"] as? String ?? "", Favourite: docs["Favourite"] as? String ?? "")
+                        self.bookList = snapshot.documents.map { docs in
+                            return Books(id: docs.documentID, Name: docs["Name"] as? String ?? "", Author: docs["Author"] as? String ?? "", BookLink: docs["BookLink"] as? String ?? "", BookCoverPage: docs["BookCoverPage"] as? String ?? "", Favourite: docs["Favourite"] as? String ?? "")
+                        }
+
+                        // Initialize favouriteStatuses array based on the fetched books
+                        self.favouriteStatuses = self.bookList.map { book in
+                            return book.Favourite == "yes" ? "yes" : "no"
                         }
                     }
                 }
-                
-            } else{
-                print("Error fetching user data: \(String(describing: error))")
+            } else {
+                print("Error fetching book data: \(String(describing: error))")
             }
         }
     }
+
+
 }
