@@ -26,7 +26,7 @@ struct Home: View {
     @State private var pdfURLs: [URL?] = [] // Array to store PDF URLs
     @State private var showPDF = false
     @State private var selectedPDFUrl: URL?
-    @State private var favouriteStatuses: [Bool] = []
+    @State private var favouriteStatuses: [String] = []
     
     //let items = ["Apple", "Banana", "Orange"]
     
@@ -221,11 +221,15 @@ struct Home: View {
                                                     VStack{
                                                         
                                                         
-                                                        // Inside ForEach where the books are displayed
                                                         Toggle(isOn: Binding(
-                                                            get: { favouriteStatuses.indices.contains(index) ? favouriteStatuses[index] : false },
+                                                            get: {
+                                                                // Check if the index exists in favouriteStatuses and convert the value to a boolean
+                                                                favouriteStatuses.indices.contains(index) ? (favouriteStatuses[index] == "yes") : false
+                                                            },
                                                             set: { newValue in
-                                                                favouriteStatuses[index] = newValue
+                                                                // Update the favouriteStatuses array based on the toggle's new value
+                                                                favouriteStatuses[index] = newValue ? "yes" : "no"
+                                                                
                                                                 // Update Firestore with the new value
                                                                 book.updateFavouriteStatus(isFavourite: newValue) { error in
                                                                     if let error = error {
@@ -237,18 +241,16 @@ struct Home: View {
                                                             Text("Favourite")
                                                         }
                                                         .onAppear {
-                                                            // Initialize toggle status based on the current favourite value
+                                                            // Check if the toggle status is already initialized
                                                             if favouriteStatuses.indices.contains(index) {
-                                                                // Skip initialization if already initialized
-                                                                return
+                                                                return // Skip if already initialized
                                                             }
                                                             
-                                                            // Set the toggle status based on the "Favourite" field
+                                                            // Set the toggle status based on the "Favourite" field of the book
                                                             let isFavourite = book.Favourite == "yes"
-                                                            favouriteStatuses.append(isFavourite)
+                                                            favouriteStatuses.append(isFavourite ? "yes" : "no")
                                                         }
-                                                        
-                                                        
+
                                                         
                                                         
                                                         Text(book.Name)
@@ -420,7 +422,8 @@ struct Home: View {
                                 }.onAppear {
                                     pdfURLs = Array(repeating: nil, count: model.bookList.count)
                                     bookCovers = Array(repeating: nil, count: model.bookList.count)
-                                    favouriteStatuses = Array(repeating: false, count: model.bookList.count) // Initialize to false
+                                    favouriteStatuses = Array(repeating: "no", count: model.bookList.count)
+
                                 }
                                 
                             }.padding()
