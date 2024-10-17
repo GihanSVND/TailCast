@@ -50,7 +50,7 @@ struct Home: View {
                     
                     VStack(alignment: .leading){
                         
-                        Text("Top Authors")
+                        Text("Top Authors").padding()
                         
                         Spacer()
                             .frame(height: 5.0)
@@ -223,9 +223,9 @@ struct Home: View {
                                                         .resizable()
                                                         .frame(width: 157, height: 207)
                                                         .cornerRadius(7)
+                                                        
                                                         .shadow(color: .black, radius: 0, x: 5, y: 5)
                                                     Spacer()
-                                                        .frame(width: 30.0)
                                                     VStack{
                                                         
                                                         
@@ -262,8 +262,7 @@ struct Home: View {
                                                         
                                                         
                                                         
-                                                        Text(book.Name)
-                                                            .multilineTextAlignment(.leading)
+                                                        Text(book.Name).multilineTextAlignment(.leading)
                                                             .frame(width: 160)
                                                             .lineLimit(nil)
                                                             .font(.title)
@@ -272,7 +271,7 @@ struct Home: View {
                                                             .padding(.top, 5.0)
                                                         
                                                         Text(book.Author)
-                                                            .multilineTextAlignment(.leading)
+                                                            
                                                             .frame(width: 160)
                                                             .lineLimit(nil)
                                                             .font(.footnote)
@@ -331,7 +330,7 @@ struct Home: View {
                                                             }
                                                             
                                                         }
-                                                    }
+                                                    }.padding()
                                                 }.padding()
                                             } else {
                                                 HStack{
@@ -348,7 +347,6 @@ struct Home: View {
                                                             }
                                                         }
                                                     Spacer()
-                                                        .frame(width: 30.0)
                                                     VStack{
                                                         
                                                         Toggle(isOn: Binding(
@@ -381,7 +379,7 @@ struct Home: View {
                                                         }
                                                         
                                                         Text(book.Name)
-                                                            .multilineTextAlignment(.leading)
+                                                            
                                                             .frame(width: 160)
                                                             .lineLimit(nil)
                                                             .font(.title)
@@ -390,7 +388,7 @@ struct Home: View {
                                                             .padding(.top, 5.0)
                                                         
                                                         Text(book.Author)
-                                                            .multilineTextAlignment(.leading)
+                                                            
                                                             .frame(width: 160)
                                                             .lineLimit(nil)
                                                             .font(.footnote)
@@ -457,7 +455,7 @@ struct Home: View {
                                         
                                         Divider()
                                     }
-                                    //.frame(width: 160, height: 215)
+                                    .frame(height: 300)
                                 }.onAppear {
                                     pdfURLs = Array(repeating: nil, count: model.bookList.count)
                                     bookCovers = Array(repeating: nil, count: model.bookList.count)
